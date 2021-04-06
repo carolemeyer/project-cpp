@@ -8,6 +8,7 @@
 
   Note that this sketch uses LED_BUILTIN to find the pin with the internal LED
 */
+#include "tempe.h"
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
