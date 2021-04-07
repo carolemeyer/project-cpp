@@ -1,7 +1,4 @@
-#pragma once
-
-#include <math.h>
-#include <Arduino.h>
+#include "includes.h"
 
 void printTemperature(void);
 

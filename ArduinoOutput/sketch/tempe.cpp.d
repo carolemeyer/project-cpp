@@ -1,6 +1,7 @@
 c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\sketch\tempe.cpp.o: \
  c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\sketch\tempe.cpp \
  c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\sketch\tempe.h \
+ c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\sketch\includes.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/math.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/sys/reent.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/libc/xtensa-lx106-elf/include/_ansi.h \
@@ -68,4 +69,5 @@ c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\sketch\temp
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/md5.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/debug.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/pins_arduino.h \
- C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/common.h
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/common.h \
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Esp.h
