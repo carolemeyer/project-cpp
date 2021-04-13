@@ -28,15 +28,25 @@ Fichiers :
 #include "weblink.h"
 #include "zedoor.h"
 
+const auto TouchPin=D5;
+const auto LedPin=D3;
+
+ touchSensor* Touch1;
+
 void setup() {
-  pinMode(LED, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
+ 
+  Touch1=new touchSensor(TouchPin,LedPin); //ici rajouter les paramètres du initSensor
+  //Touch1.initSensor(TouchPin,LedPin);//pinMode(LED, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
   Serial.begin(115200);
 }
 
 void loop() {
-  Temperature Temp1;
+
+  Touch1->useTouchSensor();
+  /*Temperature Temp1;
   Temp1.printTemperature();
 
   Kozy AmbianceTamisee;
   AmbianceTamisee.blinkOnBrdLED();
+  */
 }
