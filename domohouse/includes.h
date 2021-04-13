@@ -8,5 +8,8 @@
 // Multithreading
 #include <thread>
 
+// Classes N
+#include "classes.h"
+
 // Other functions
 #include <math.h>

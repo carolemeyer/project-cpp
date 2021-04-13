@@ -1,7 +1,7 @@
 #include "includes.h"
 
 
-class Temperature {
+class Temperature : public Sensor, public Analog {
     public :
         void printTemperature(void);
     private:
