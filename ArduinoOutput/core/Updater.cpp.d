@@ -60,8 +60,8 @@ c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\core\Update
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/../../bootloaders/eboot/spi_vendors.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Updater.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/debug.h \
- C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/pins_arduino.h \
- C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/common.h \
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/pins_arduino.h \
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/../generic/common.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/flash_utils.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/../../bootloaders/eboot/flash.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4/tools/sdk/include/spi_flash_geometry.h \

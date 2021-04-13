@@ -3,23 +3,25 @@
 
   ESP8266 DomoHouse by Romain Choulot, Carole Meyer and Lea Pitault
 
+  https://www.go4expert.com/articles/writing-multithreaded-program-cpp-t29980/
+
 */
-# 5 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino"
+# 6 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino"
 /*
 
-  Pour le moment :
+Pour le moment :
 
-  -Romain : Servo pour la porte
+-Romain : Servo pour la porte
 
-            Capteur de temperature pour modification d'ambiance
+          Capteur de temperature pour modification d'ambiance
 
-            Matrice de LED pour la Télé
+          Matrice de LED pour la Télé
 
-  -Carole : Lampes commandées par le wifi
+-Carole : Lampes commandées par le wifi
 
-            Actionneurs sonores
+          Actionneurs sonores
 
-  -Léa : Door lock (capteur d'empreinte, détecteur de présence...)
+-Léa : Door lock (capteur d'empreinte, détecteur de présence...)
 
 
 
@@ -38,20 +40,22 @@ Fichiers :
 -amongueus : detection intru + alarme
 
 */
-# 24 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino"
-# 25 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
+# 25 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino"
 # 26 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
 # 27 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
 # 28 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
 # 29 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
+# 30 "c:\\Users\\romai\\Documents\\INSA_4A\\S2\\CPP\\BE\\project-cpp\\domohouse\\domohouse.ino" 2
 
 void setup() {
-  pinMode(2, 0x01); // Initialize the LED_BUILTIN pin as an output
+  pinMode(2 /* Built-in LED*/, 0x01); // Initialize the LED_BUILTIN pin as an output
   Serial.begin(115200);
 }
 
-// the loop function runs over and over again forever
 void loop() {
-  printTemperature();
-  blinkBlueLed();
+  Temperature Temp1;
+  Temp1.printTemperature();
+
+  Kozy AmbianceTamisee;
+  AmbianceTamisee.blinkOnBrdLED();
 }

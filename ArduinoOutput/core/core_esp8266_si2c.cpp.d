@@ -66,8 +66,8 @@ c:\Users\romai\Documents\INSA_4A\S2\CPP\BE\project-cpp\ArduinoOutput\core\core_e
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/Stream.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266/md5.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266\debug.h \
- C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/pins_arduino.h \
- C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\generic/common.h \
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/pins_arduino.h \
+ C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\variants\adafruit/../generic/common.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266\wiring_private.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266\PolledTimeout.h \
  C:\Users\romai\AppData\Local\Arduino15\packages\esp8266\hardware\esp8266\2.7.4\cores\esp8266\twi_util.h
