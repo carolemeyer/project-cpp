@@ -4,7 +4,7 @@
 #include "includes.h"
 
 
-class Temperature {
+class Temperature : public Sensor, public Digital {
     public :
         void printTemperature(void);
     private:

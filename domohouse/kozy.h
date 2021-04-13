@@ -4,7 +4,7 @@
 #include "includes.h"
 #define LED 2 // Built-in LED
 
-class Kozy {
+class Kozy : public Sensor, public Digital {
     public :
         void blinkOnBrdLED(void);
     private :
