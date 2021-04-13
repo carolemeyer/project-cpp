@@ -1,3 +1,6 @@
+#ifndef INCLUDES_H
+#define INCLUDES_H
+
 // Arduino & ESP
 #include <Arduino.h>
 #include <Esp.h>
@@ -13,3 +16,5 @@
 
 // Other functions
 #include <math.h>
+
+#endif

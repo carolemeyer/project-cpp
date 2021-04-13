@@ -1,47 +1,53 @@
+#ifndef CLASSES_H
+#define CLASSES_H
+
 
 //###############################//
 //########## Classes N ##########//
 //###############################//
 
-class Sensor {
-    public :
+// class Sensor {
+//     public :
 
 
-    private :
-        int nbSensors;
-};
+//     private :
+//         int nbSensors;
+// };
 
 
-class Actuator {
-    public :
+// class Actuator {
+//     public :
 
 
-    private :
-        int nbActuators;
-};
+//     private :
+//         int nbActuators;
+// };
 
 
 
-class Digital {
-    public :
+// class Digital {
+//     public :
 
 
-    private :
+//     private :
 
 
-};
+// };
 
 
-class Analog {
-    public :
+// class Analog {
+//     public :
 
 
-    private :
+//     private :
 
 
-};
+// };
 
 
 //#################################//
 //########## Classes N+1 ##########//
 //#################################//
+
+
+#endif
