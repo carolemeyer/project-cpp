@@ -8,7 +8,7 @@
 
 class Sensor {
     public :
-      virtual int initialize(int pinNb); // Initialise pin
+      virtual int initialize(int pinNb) = 0; // Initialise pin
 
     private :
         int nbSensors;
@@ -17,6 +17,7 @@ class Sensor {
 
 class Actuator {
     public :
+      virtual int initialize(int pinNb) = 0; // Initialise pin
 
 
     private :
