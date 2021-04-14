@@ -1,5 +1,7 @@
 /*
  * Author : Lea Pitault
+ * 
+ * 
  */
 
 #ifndef ZEDOOR_H
@@ -7,24 +9,51 @@
 
 #include "includes.h"
 
-class touchSensor
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE TOUCHSENSOR
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+class MonTouchSensor
 {
 public:
   //----------------------------constructeurs----------------------------//
-  touchSensor();
+  MonTouchSensor();
 
-  touchSensor(int TouchP, int LedP);
+  MonTouchSensor(int TouchP, int LedP);
 
   //---------------------------- destructeur ----------------------------//
-  ~touchSensor();
+  ~MonTouchSensor();
 
   //----------------------------- fonctions -----------------------------//
-  //void initSensor(int TouchP, int LedP); //issue de la classe N Classes
   void useTouchSensor(); //methode propre a la classe N+1 touchSensor
 
 protected:
 int touchPin;
 int ledPin;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE SERVOMOTEUR
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+class MonServo
+{
+public:
+  //----------------------------constructeurs----------------------------//
+  MonServo();
+
+  MonServo(int ServoPin);
+
+  //---------------------------- destructeur ----------------------------//
+  ~MonServo();
+
+  //----------------------------- fonctions -----------------------------//
+  //virtual void initialize(int pinNb);
+  void moveServo(); //methode propre a la classe N+1 doorServo
+
+protected:
+int servoPin;
+Servo myservo;
 };
 
 

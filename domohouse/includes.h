@@ -17,4 +17,8 @@
 // Other functions
 #include <math.h>
 
+//Servo
+#include <Servo.h>
+
+
 #endif

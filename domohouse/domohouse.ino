@@ -4,21 +4,21 @@
 */
 
 /*
-Pour le moment :
--Romain : Servo pour la porte
+  Pour le moment :
+  -Romain : Servo pour la porte
           Capteur de temperature pour modification d'ambiance
           Matrice de LED pour la Télé
--Carole : Lampes commandées par le wifi
+  -Carole : Lampes commandées par le wifi
           Actionneurs sonores
--Léa : Door lock (capteur d'empreinte, détecteur de présence...)
+  -Léa : Door lock (capteur d'empreinte, détecteur de présence...)
 
 
-Fichiers :
--weblink : wifi, serveur web
--kozy : lumières, musique, télé
+  Fichiers :
+  -weblink : wifi, serveur web
+  -kozy : lumières, musique, télé
 
--zedoor : servo, capteur mdp
--amongueus : detection intru + alarme
+  -zedoor : servo, capteur mdp
+  -amongueus : detection intru + alarme
 */
 
 
@@ -28,25 +28,27 @@ Fichiers :
 #include "weblink.h"
 #include "zedoor.h"
 
-const auto TouchPin=D5;
-const auto LedPin=D3;
+const auto TouchPin = D5;
+const auto LedPin = D3;
+const auto ServoPin = D6;
 
- touchSensor* Touch1;
+MonTouchSensor* Touch1;
+MonServo* Servo1;
 
 void setup() {
- 
-  Touch1=new touchSensor(TouchPin,LedPin); //ici rajouter les paramètres du initSensor
-  //Touch1.initSensor(TouchPin,LedPin);//pinMode(LED, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
-  Serial.begin(115200);
+
+  Servo1 = new MonServo(ServoPin);           //setup des pin pour le servomoteur
+  Touch1 = new MonTouchSensor(TouchPin, LedPin); //setup des pin pour le touch sensor et la LED
 }
 
 void loop() {
 
   Touch1->useTouchSensor();
+  Servo1->moveServo();
   /*Temperature Temp1;
-  Temp1.printTemperature();
+    Temp1.printTemperature();
 
-  Kozy AmbianceTamisee;
-  AmbianceTamisee.blinkOnBrdLED();
+    Kozy AmbianceTamisee;
+    AmbianceTamisee.blinkOnBrdLED();
   */
 }
