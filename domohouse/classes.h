@@ -8,7 +8,7 @@
 
 class Sensor {
     public :
-
+      virtual int initialize(int pinNb); // Initialise pin
 
     private :
         int nbSensors;
@@ -28,9 +28,13 @@ class Actuator {
 class Digital {
     public :
 
-
     private :
 
+
+    protected :
+      // Valeur du pin
+      int pinNb;
+  
 
 };
 
@@ -43,11 +47,6 @@ class Analog {
 
 
 };
-
-
-//#################################//
-//########## Classes N+1 ##########//
-//#################################//
 
 
 #endif
