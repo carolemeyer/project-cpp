@@ -1,4 +1,10 @@
+#ifndef KOZY_H
+#define KOZY_H
+
 #include <Arduino.h>
+#include "includes.h"
+
+#define LED 2 // Built-in LED
 
 #define PIN_WhiteLED D3            // Connects White LED to digital pin D3
 #define PIN_GreenLED D5            // Connects Green LED to digital pin D5
@@ -16,3 +22,13 @@ void configLED(int pin);      // Configures the LED on its dedicated pin - to pu
 void blinkBlueLed(void);      // Blinks the built-in blue LED for one second - to put in the loop
 void blinkLed(int pin);       // Blinks the LED for one second - to put in the loop
 void alternativeBlink(int pin1, int pin2); // Alternatively blinks one LED and the other - to put in the loop
+
+
+
+class Kozy : public Sensor, public Digital {
+    public :
+        void blinkOnBrdLED(void);
+    private :
+};
+
+#endif
