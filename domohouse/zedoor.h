@@ -13,43 +13,48 @@
 //            CLASSE TOUCHSENSOR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MonTouchSensor
+class MonTouchSensor : public Sensor, public Digital
 {
 public:
   //----------------------------constructeurs----------------------------//
   MonTouchSensor();
-
-  MonTouchSensor(int TouchP, int LedP);
-
+  
   //---------------------------- destructeur ----------------------------//
   ~MonTouchSensor();
 
   //----------------------------- fonctions -----------------------------//
-  void useTouchSensor(); //methode propre a la classe N+1 touchSensor
+  virtual void initialize(int pinNb) override;
+  boolean getTouch(); //methode propre a la classe N+1 touchSensor
+  void AffichageEtatTouch();
+  int getTimer() ;
 
 protected:
 int touchPin;
-int ledPin;
+int timer;
+boolean touch_OK;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE SERVOMOTEUR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MonServo
+class MonServo : public Actuator, public Digital
 {
 public:
   //----------------------------constructeurs----------------------------//
   MonServo();
 
-  MonServo(int ServoPin);
+  //MonServo(int ServoPin);
 
   //---------------------------- destructeur ----------------------------//
   ~MonServo();
 
   //----------------------------- fonctions -----------------------------//
-  //virtual void initialize(int pinNb);
+  virtual void initialize(int pinNb) override;
+  
   void moveServo(); //methode propre a la classe N+1 doorServo
+  void MovePos(int pos);
+
 
 protected:
 int servoPin;

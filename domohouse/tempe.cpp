@@ -1,12 +1,12 @@
 #include "tempe.h"
 
 
-int Temperature::initialize(int pinNb) {
+void Temperature::initialize(int pinNb) {
   pinMode(pinNb, INPUT);
 }
 
 
-int Temperature::getHeatLevel(int pinNb) {
+/*int Temperature::getHeatLevel(int pinNb) {
     value = analogRead(pinNb);
     float R = 1023.0/value-1.0;
     R = R0*R;
@@ -14,4 +14,4 @@ int Temperature::getHeatLevel(int pinNb) {
  
     Serial.print("Temperature = ");
     Serial.println(temperature);
-}
+}*/

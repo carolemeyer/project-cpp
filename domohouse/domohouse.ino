@@ -4,7 +4,6 @@
 */
 
 /*
-<<<<<<< HEAD
   Pour le moment :
   -Romain : Servo pour la porte
           Capteur de temperature pour modification d'ambiance
@@ -17,11 +16,11 @@
   Fichiers :
   -weblink : wifi, serveur web
   -kozy : lumières, musique, télé
-=======
-Fichiers :
--weblink : wifi, serveur web
--kozy : lumières, musique, télé
->>>>>>> Romain
+
+  Fichiers :
+  -weblink : wifi, serveur web
+  -kozy : lumières, musique, télé
+
 
   -zedoor : servo, capteur mdp
   -amongueus : detection intru + alarme
@@ -34,51 +33,61 @@ Fichiers :
 #include "weblink.h"
 #include "zedoor.h"
 
-<<<<<<< HEAD
-const auto TouchPin = D5;
+#define pinLightSensor D6   // Light Sensor on D6
+#define pinTempSensor A0    // Grove - Temperature Sensor connect to A0
+
+const auto TouchPin = D8;
 const auto LedPin = D3;
-const auto ServoPin = D6;
+const auto ServoPin = D7;
 
 MonTouchSensor* Touch1;
 MonServo* Servo1;
 
-void setup() {
-
-  Servo1 = new MonServo(ServoPin);           //setup des pin pour le servomoteur
-  Touch1 = new MonTouchSensor(TouchPin, LedPin); //setup des pin pour le touch sensor et la LED
-=======
-#define pinLightSensor D6   // Light Sensor on D6
-#define pinTempSensor A0    // Grove - Temperature Sensor connect to A0
-
 class Light jacquouilleLaFripouille; // Jour, Nuit, Jour, Nuit
-class Temperature caliente; // VAleur 
-
+class Temperature caliente; // VAleur
 void setup() {
-
   Serial.begin(115200);
-  
-  jacquouilleLaFripouille.initialize(pinLightSensor);
-  caliente.initialize(pinTempSensor);
->>>>>>> Romain
+  Servo1 = new MonServo();           //setup des pin pour le servomoteur
+  Touch1 = new MonTouchSensor(); //setup des pin pour le touch sensor et la LED
+
+
+
+
+  //jacquouilleLaFripouille.initialize(pinLightSensor);
+  //caliente.initialize(pinTempSensor);
 }
 
 void loop() {
 
-<<<<<<< HEAD
-  Touch1->useTouchSensor();
-  Servo1->moveServo();
+
+  //Touch1->useTouchSensor();
+  Touch1->initialize(TouchPin);
+  Servo1->initialize(ServoPin);
+
+  Touch1->getTouch();
+  Touch1->AffichageEtatTouch();
+  Touch1->getTimer();
+  if  (Touch1->getTimer()>700) {
+    Servo1->MovePos(180);
+  }
+  else if (Touch1->getTimer()==0){
+    Servo1->MovePos(-180);
+  }
+
+
+
   /*Temperature Temp1;
     Temp1.printTemperature();
 
     Kozy AmbianceTamisee;
     AmbianceTamisee.blinkOnBrdLED();
   */
-=======
-  
-  jacquouilleLaFripouille.getLightLevel(pinLightSensor);
-  caliente.getHeatLevel(pinTempSensor);
 
-  delay(200);
-  
->>>>>>> Romain
+
+  //jacquouilleLaFripouille.getLightLevel(pinLightSensor);
+  //caliente.getHeatLevel(pinTempSensor);
+
+  //delay(200);
+
+
 }

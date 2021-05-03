@@ -9,10 +9,10 @@
 MonTouchSensor::MonTouchSensor() {
 }
 
-MonTouchSensor::MonTouchSensor(int TouchP, int LedP): touchPin(TouchP), ledPin(LedP) {
+/*MonTouchSensor::MonTouchSensor(int TouchP, int LedP): touchPin(TouchP), ledPin(LedP) {
   pinMode(touchPin, INPUT);
   pinMode(ledPin, OUTPUT);
-}
+  }*/
 
 //---------------------------- destructeur ----------------------------//
 
@@ -22,22 +22,39 @@ MonTouchSensor::~MonTouchSensor() {
 //----------------------------fonctions----------------------------//
 
 //fonction d'initialisation virtuelle issue de Sensor
-/*void MonTouchSensor::initialize(int pinNb) {
+void MonTouchSensor::initialize(int pinNb) {
   pinMode(pinNb, INPUT);
-}*/
+  touchPin = pinNb;
+}
 
+//fonction qui retourne le booléen indiquant si le touchSensor est touché ou non
 
-void MonTouchSensor::useTouchSensor() {
-
+boolean MonTouchSensor::getTouch() {
   int sensorValue = digitalRead(touchPin);
   if (sensorValue == 1)
   {
-    digitalWrite(ledPin, HIGH);
+    touch_OK = true;
+    timer++;
   }
-  else
-  {
-    digitalWrite(ledPin, LOW);
+  else {
+    touch_OK = false;
+    if ((timer--) <= 0) {
+      timer = 0;
+    }
   }
+  return touch_OK;
+
+}
+
+int MonTouchSensor::getTimer() {
+  return timer;
+}
+
+void MonTouchSensor::AffichageEtatTouch() {
+  Serial.print("Etat du touch : " );
+  Serial.println(touch_OK);
+  Serial.print("Etat du timer : " );
+  Serial.println(timer);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,9 +66,6 @@ void MonTouchSensor::useTouchSensor() {
 MonServo::MonServo() {
 }
 
-MonServo::MonServo(int ServoPin): servoPin(ServoPin) {
-  myservo.attach(servoPin);
-}
 
 //---------------------------- destructeur ----------------------------//
 
@@ -60,7 +74,12 @@ MonServo::~MonServo() {
 
 //----------------------------fonctions----------------------------//
 
-void MonServo::moveServo() {
+//fonction d'initialisation virtuelle issue de Sensor
+void MonServo::initialize(int pinNb) {
+  myservo.attach(pinNb);
+}
+
+/*void MonServo::moveServo() {
   int pos = 0;
   for (pos = 0; pos <= 180; pos += 1) {     // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
@@ -71,4 +90,8 @@ void MonServo::moveServo() {
     myservo.write(pos);              // tell servo to go to position in variable 'pos'
     delay(5);                       // waits 15ms for the servo to reach the position
   }
+  }*/
+
+void MonServo::MovePos(int pos) {
+  myservo.write(pos);
 }

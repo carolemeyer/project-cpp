@@ -6,7 +6,7 @@
 
 class Light : public Sensor, public Digital {
     public :
-      int initialize(int pinNb);
+      virtual void initialize(int pinNb);
       int getLightLevel(int pinNb);
 
     private :
