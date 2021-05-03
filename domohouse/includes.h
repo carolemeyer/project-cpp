@@ -8,9 +8,6 @@
 // I/O
 #include <iostream>
 
-// Multithreading
-#include <thread>
-
 // Classes N
 #include "classes.h"
 
