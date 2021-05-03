@@ -8,7 +8,7 @@
 
 class Sensor {
     public :
-
+        virtual int initialize(void)=0;
 
     private :
         int nbSensors;
