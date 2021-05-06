@@ -50,7 +50,7 @@ int MonTouchSensor::getTimer() {
   return timer;
 }
 
-void MonTouchSensor::AffichageEtatTouch() {
+void MonTouchSensor::affichageEtatTouch() {
   Serial.print("Etat du touch : " );
   Serial.println(touch_OK);
   Serial.print("Etat du timer : " );
@@ -92,6 +92,66 @@ void MonServo::initialize(int pinNb) {
   }
   }*/
 
-void MonServo::MovePos(int pos) {
+void MonServo::movePos(int pos) {
   myservo.write(pos);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE PORTE
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------constructeurs----------------------------//
+
+MaPorte::MaPorte(): MonServo() {
+}
+
+
+//---------------------------- destructeur ----------------------------//
+
+MaPorte::~MaPorte() {
+}
+
+//----------------------------fonctions----------------------------//
+
+//fonction d'initialisation de la porte
+void MaPorte::initPorte(int pinServo) {
+  cerveau.initialize(pinServo); //ou faire MonServo::initialize(pinServo);
+
+}
+
+void MaPorte::movePorte(int pos) {
+  cerveau.movePos(pos);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE Door_PROJET
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//----------------------------constructeurs----------------------------//
+
+DoorProject::DoorProject(): MaPorte(),MonTouchSensor() {
+}
+
+
+//---------------------------- destructeur ----------------------------//
+
+DoorProject::~DoorProject() {
+}
+
+//----------------------------fonctions----------------------------//
+
+//fonction d'initialisation de la porte
+void DoorProject::initDoorProject(int pinSensor, int pinServo) {
+  porte.initPorte(pinServo); //ou faire MonServo::initialize(pinServo);
+  touchS.initialize(pinSensor); //MonTouchSensor::initialize(pinSensor);
+}
+
+
+void DoorProject::runDoorProject(int posOpen, int posClose, int timer1) {
+  if  (touchS.getTimer() > timer1) {
+    porte.movePorte(posOpen);
+  }
+  else if (touchS.getTimer() == 0) {
+     porte.movePorte(posClose);
+  }
 }
