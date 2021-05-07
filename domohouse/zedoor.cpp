@@ -34,13 +34,13 @@ boolean MonTouchSensor::getTouch() {
   if (sensorValue == 1)
   {
     touch_OK = true;
-    timer++;
+    //timer++;
   }
   else {
     touch_OK = false;
-    if ((timer--) <= 0) {
-      timer = 0;
-    }
+    //if ((timer--) <= 0) {
+    //timer = 0;
+    // }
   }
   return touch_OK;
 
@@ -116,7 +116,6 @@ MaPorte::~MaPorte() {
 //fonction d'initialisation de la porte
 void MaPorte::initPorte(int pinServo) {
   cerveau.initialize(pinServo); //ou faire MonServo::initialize(pinServo);
-
 }
 
 void MaPorte::movePorte(int pos) {
@@ -129,7 +128,7 @@ void MaPorte::movePorte(int pos) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------constructeurs----------------------------//
 
-DoorProject::DoorProject(): MaPorte(),MonTouchSensor() {
+DoorProject::DoorProject(): MaPorte(), MonTouchSensor() {
 }
 
 
@@ -148,10 +147,56 @@ void DoorProject::initDoorProject(int pinSensor, int pinServo) {
 
 
 void DoorProject::runDoorProject(int posOpen, int posClose, int timer1) {
-  if  (touchS.getTimer() > timer1) {
+  //static int timerDoor = 0;
+  //int timerOpen;
+  if  (touchS.getTouch()) {
+    timerAdd();
+  } else {
+    timerOpen = getDoorTimer();
+    if (getDoorTimer() > 0) {
+      timerSub();
+      //timerOpen = getDoorTimer(); //pb ici ça va prendre une nouvelle valeur en continu à cause du while du main
+    }
+  }
+
+  if  (getDoorTimer() > timer1) {
     porte.movePorte(posOpen);
   }
-  else if (touchS.getTimer() == 0) {
-     porte.movePorte(posClose);
-  }
+  //Serial.print("Etat du timer : " );
+  //Serial.println(timerOpen);
+
+  else if (getDoorTimer() <= (getDoorTimerOpen() - timer1))
+    porte.movePorte(posClose);
+}
+
+
+void DoorProject::timerAdd() {
+  timerDoor++;
+}
+
+void DoorProject::timerSub() {
+  timerDoor--;
+}
+
+int DoorProject::getDoorTimer() {
+  return timerDoor;
+}
+
+int DoorProject::getDoorTimerOpen() {
+  return timerOpen;
+}
+
+
+void DoorProject::afficheInfos() {
+  //if (touchS.getTouch() == true) {
+
+  Serial.print("Etat du touch : " );
+  Serial.println(touchS.getTouch());
+  Serial.print("Etat du timer : " );
+  Serial.println(getDoorTimer());
+  Serial.print("Etat du timerOpen : " );
+  Serial.println(getDoorTimerOpen());
+
+
+  //}
 }
