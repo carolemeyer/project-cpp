@@ -42,8 +42,9 @@ const auto ServoPin = D7;
 
 const auto OpenDoorAngle = 180;
 const auto CloseDoorAngle = -180;
-const auto TimerOpenDoor = 400;
-
+const auto TimerOpenDoor1 = 400;
+const auto TimerOpenDoor2 = 100;
+const auto TimerOpenDoor3 = 50;
 
 //MonTouchSensor* Touch1;
 //MonServo* Servo1;
@@ -53,7 +54,8 @@ DoorProject* ProjetPorte1;
 class Light jacquouilleLaFripouille; // Jour, Nuit, Jour, Nuit
 class Temperature caliente; // VAleur
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(38400);
+  //Serial.begin(115200);
   //Servo1 = new MonServo();           //setup des pin pour le servomoteur
   //Touch1 = new MonTouchSensor(); //setup des pin pour le touch sensor et la LED
   //Porte1 = new MaPorte();
@@ -68,7 +70,7 @@ void loop() {
 
 
   ProjetPorte1->initDoorProject(TouchPin, ServoPin);
-  ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor);
+  ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor2, TimerOpenDoor3);
   ProjetPorte1->afficheInfos();
 
 

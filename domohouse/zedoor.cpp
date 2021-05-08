@@ -96,6 +96,10 @@ void MonServo::movePos(int pos) {
   myservo.write(pos);
 }
 
+int MonServo::readPos() {
+  return myservo.read();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE PORTE
@@ -122,6 +126,10 @@ void MaPorte::movePorte(int pos) {
   cerveau.movePos(pos);
 }
 
+int MaPorte::getPosPorte() {
+  return cerveau.readPos();
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE Door_PROJET
@@ -143,30 +151,40 @@ DoorProject::~DoorProject() {
 void DoorProject::initDoorProject(int pinSensor, int pinServo) {
   porte.initPorte(pinServo); //ou faire MonServo::initialize(pinServo);
   touchS.initialize(pinSensor); //MonTouchSensor::initialize(pinSensor);
+  //porte.movePorte(0);
 }
 
 
-void DoorProject::runDoorProject(int posOpen, int posClose, int timer1) {
+void DoorProject::runDoorProject(int posOpen, int posClose, int timer1, int timer2) {
   //static int timerDoor = 0;
   //int timerOpen;
-  if  (touchS.getTouch()) {
+  //static int oldEtat;
+  if  (touchS.getTouch() == true) {
+    setOldTouch(touchS.getTouch());
     timerAdd();
   } else {
-    timerOpen = getDoorTimer();
+    if ((getOldEtat() == 1) && (porte.getPosPorte() == posOpen)) {
+      setDoorTimerOpen(getDoorTimer());
+      //timerOpen = getDoorTimer();
+    }
+    setOldTouch(touchS.getTouch());
     if (getDoorTimer() > 0) {
       timerSub();
-      //timerOpen = getDoorTimer(); //pb ici ça va prendre une nouvelle valeur en continu à cause du while du main
     }
   }
-
-  if  (getDoorTimer() > timer1) {
+  if  ((getDoorTimer() > timer1)) { // && (porte.getPosPorte() != posOpen)) {
     porte.movePorte(posOpen);
   }
-  //Serial.print("Etat du timer : " );
-  //Serial.println(timerOpen);
-
-  else if (getDoorTimer() <= (getDoorTimerOpen() - timer1))
+  if ((getDoorTimer() <= (getDoorTimerOpen() - timer2)) ) { //&& (porte.getPosPorte() != posClose)) {
     porte.movePorte(posClose);
+    setDoorEtat(1);
+    //setTimerNull(); //remettre le timer à 0 quand j'ai fermé la porte
+  }
+  if (getDoorEtat() == 1) {
+    setTimerNull();
+    setDoorEtat(0);
+  }
+
 }
 
 
@@ -178,6 +196,10 @@ void DoorProject::timerSub() {
   timerDoor--;
 }
 
+void DoorProject::setTimerNull() {
+  timerDoor = 0;
+}
+
 int DoorProject::getDoorTimer() {
   return timerDoor;
 }
@@ -186,6 +208,25 @@ int DoorProject::getDoorTimerOpen() {
   return timerOpen;
 }
 
+void DoorProject::setDoorTimerOpen(int timer) {
+  timerOpen = timer;
+}
+
+int DoorProject::getOldEtat() {
+  return oldEtat;
+}
+
+void DoorProject::setOldTouch(int etat) {
+  oldEtat = etat;
+}
+
+int DoorProject::getDoorEtat() {
+  return doorClosed;
+}
+
+void DoorProject::setDoorEtat(int doorState) {
+  doorClosed = doorState;
+}
 
 void DoorProject::afficheInfos() {
   //if (touchS.getTouch() == true) {
@@ -196,6 +237,8 @@ void DoorProject::afficheInfos() {
   Serial.println(getDoorTimer());
   Serial.print("Etat du timerOpen : " );
   Serial.println(getDoorTimerOpen());
+  Serial.print("Pos de la porte : " );
+  Serial.println(getPosPorte());
 
 
   //}

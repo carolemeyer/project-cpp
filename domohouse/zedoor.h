@@ -52,6 +52,8 @@ class MonServo : public Actuator, public Digital
 
     //void moveServo(); //methode propre a la classe N+1 doorServo
     void movePos(int pos);
+    int readPos();
+
 
 
   protected:
@@ -75,6 +77,7 @@ class MaPorte : private MonServo
     //----------------------------- fonctions -----------------------------//
     void initPorte(int pinServo);
     void movePorte(int pos);
+    int getPosPorte();
 
   protected:
     MonServo cerveau;
@@ -94,19 +97,28 @@ class DoorProject : private MaPorte, private MonTouchSensor
 
     //----------------------------- fonctions -----------------------------//
     void initDoorProject(int pinSensor, int pinServo);
-    void runDoorProject(int posOpen, int posClose, int timer1);
+    void runDoorProject(int posOpen, int posClose, int timer1, int timer2);
     void afficheInfos();
     int getDoorTimer();
 
     int getDoorTimerOpen();
+    void setDoorTimerOpen(int timer);
     void timerAdd();
     void timerSub();
+    void setTimerNull();
+
+    int getOldEtat();
+    int getDoorEtat();
+    void setDoorEtat(int doorState);
+    void setOldTouch(int etat);
 
   protected:
     MaPorte porte;
     MonTouchSensor touchS;
     int timerDoor;
     int timerOpen;
+    int oldEtat;
+    int doorClosed;
 
 };
 
