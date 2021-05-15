@@ -28,32 +28,22 @@ Fichiers :
 #include "weblink.h"
 #include "zedoor.h"
 
-class Led blueLed(PIN_OnBoardBlueLED);
-class Led redLed(PIN_RedLED);
-class Led whiteLed(PIN_WhiteLED);
-//class Buzzer buzzEclair(PIN_Buzzer); //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
-class Speaker dropTheMic(PIN_Speaker);
-//class WifiModule weFee;
+//class Led blueLed;
+//class WifiModule weFee; //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
+class MyAlarm intruzion;
+class MyMood goodMood;
 
 void setup() {
-  Serial.begin(115200);         // pour le debug au printf sur la console
-  //blueLed.initialize();         // Initializes the built-in blue led as an output
-  //redLed.initialize();          // Initializes the red led as an output
-  //whiteLed.initialize();        // Initializes the white led as an output
-  //buzzEclair.initialize();
-  dropTheMic.initialize();
+  Serial.begin(115200);           // pour le debug au printf sur la console
+  //blueLed.initialize(PIN_OnBoardBlueLED);         // Initializes the built-in blue led as an output
   //weFee.initialize();
+  intruzion.initialize();
+  goodMood.initialize();
 }
 
 // the loop function runs over and over again forever
 void loop() {
   //blueLed.blinkLed();    // Blinks blue built-in led
-  //redLed.blinkLed();     // Blinks red led
-  //whiteLed.blinkLed();   // Blinks white led
-  //dropTheMic.musicOn();
-  //dropTheMic.alarmOn();
-  //buzzEclair.bipBuzzer();
-  //buzzEclair.singSong();
-
-
+  intruzion.alarmOn();
+  goodMood.posey();
 }
