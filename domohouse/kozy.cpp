@@ -2,7 +2,7 @@
 
 //-----------BUZZER----------//
 
-// Constructeurs
+// Constructors
 
 Buzzer::Buzzer() : pin(PIN_Buzzer) {};
 Buzzer::Buzzer(int pin) : pin(pin) {};
@@ -63,7 +63,7 @@ void Buzzer::playNote(char note, int duration) {
 
 //-----------LED----------//
 
-// Constructeurs
+// Constructors
 
 Led::Led() : pin(PIN_OnBoardBlueLED) {};
 Led::Led(int pin) : pin(pin) {};
@@ -93,8 +93,8 @@ void Led::alternativeBlink(int pin1, int pin2){
 }
 
 //-----------SPEAKER----------//
-/*
-// Constructeurs
+
+// Constructors
 
 Speaker::Speaker() : pin(PIN_Speaker) {};
 Speaker::Speaker(int pin) : pin(pin) {};
@@ -107,13 +107,46 @@ int Speaker::initialize(){
   return 0;
 }
 
-void Speaker::soundOn(uint8_t note_index){
-  int BassTab[]={1911,1702,1516,1431,1275,1136,1012}; //bass 1~7
+void Speaker::musicOn(){
+    /*sound bass 1~7*/
+    for(int note_index=0;note_index<7;note_index++)
+    {
+        sound(note_index);
+        delay(500);
+    }
+}
+
+void Speaker::alarmOn(){
+    /*sound bass 1~7*/
+    for(int note_index=0;note_index<8;note_index++)
+    {
+        alarm(note_index);
+        delay(500);
+    }
+}
+
+// Private functions
+
+void Speaker::sound(uint8_t note_index){
+  //int BassTab[]={1911,1702,1516,1431,1275,1136,1012}; //bass 1~7
+  int Mario[]={1516,1516,1516,1012,1516,1275,1911}; //MarioBros
   for(int i=0;i<100;i++){
      digitalWrite(PIN_Speaker,HIGH);
-     delayMicroseconds(BassTab[note_index]);
+     //delayMicroseconds(BassTab[note_index]);
+     delayMicroseconds(Mario[note_index]);
      digitalWrite(PIN_Speaker,LOW);
-     delayMicroseconds(BassTab[note_index]);
+     //delayMicroseconds(BassTab[note_index]);
+     delayMicroseconds(Mario[note_index]);
   }
 }
-*/
+
+
+void Speaker::alarm(uint8_t note_index){
+  int Alarm[]={1112,1711,1112,1711,1112,1711,1112,1711}; //alarm notes
+  for(int i=0;i<100;i++){
+     digitalWrite(PIN_Speaker,HIGH);
+     delayMicroseconds(Alarm[note_index]);
+     digitalWrite(PIN_Speaker,LOW);
+     delayMicroseconds(Alarm[note_index]);
+  }
+}

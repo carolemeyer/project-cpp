@@ -6,13 +6,14 @@
 #define PIN_WhiteLED D5                 // Connects White LED to digital pin D5
 #define PIN_RedLED D3                   // Connects Green LED to digital pin D3
 #define PIN_OnBoardBlueLED LED_BUILTIN  // BuiltIn Blue LED is already on board
+// The user can choose either to connect a buzzer or a speaker to the digital pin D6
 #define PIN_Buzzer D6                   // Connects Buzzer to digital pin D6
-//#define PIN_Speaker D3
+#define PIN_Speaker D6                  // Connects Speaker to digital pin D6
  
 //BUZZER
 class Buzzer : public Actuator, public Digital {
     public :
-        // Constructeurs
+        // Constructors
         Buzzer();
         Buzzer(int pin);
         ~Buzzer();
@@ -33,7 +34,7 @@ class Buzzer : public Actuator, public Digital {
 //LED
 class Led : public Actuator, public Digital {
     public :
-        // Constructeurs
+        // Constructors
         Led();
         Led(int pin);
         ~Led();
@@ -48,20 +49,23 @@ class Led : public Actuator, public Digital {
 
 
 //SPEAKER
-/*
+
 class Speaker : public Actuator, public Digital {
     public : 
-        // Constructeurs
+        // Constructors
         Speaker();
         Speaker(int pin);
         ~Speaker();
         // Public functions
         int initialize(void); // Configures the Buzzer on its dedicated pin - to put in the setup
-        void soundOn(uint8_t note_index); //Outputs notes through the speaker
+        void musicOn(void); //Outputs notes through the speaker
+        void alarmOn(void); //Outputs two notes repeatedly through the speaker
     private : 
         int pin;
+        void sound(uint8_t note_index); //One note at a time
+        void alarm(uint8_t note_index); //One note at a time
 };
-*/
+
 
 
 

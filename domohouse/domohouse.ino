@@ -15,7 +15,7 @@ Pour le moment :
 
 Fichiers :
 -weblink : wifi, serveur web
--kozy : lumières, musique, télé
+-kozy : lumières, musique
 
 -zedoor : servo, capteur mdp
 -amongueus : detection intru + alarme
@@ -31,7 +31,8 @@ Fichiers :
 class Led blueLed(PIN_OnBoardBlueLED);
 class Led redLed(PIN_RedLED);
 class Led whiteLed(PIN_WhiteLED);
-class Buzzer buzzEclair(PIN_Buzzer); //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
+//class Buzzer buzzEclair(PIN_Buzzer); //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
+class Speaker dropTheMic(PIN_Speaker);
 //class WifiModule weFee;
 
 void setup() {
@@ -39,7 +40,8 @@ void setup() {
   //blueLed.initialize();         // Initializes the built-in blue led as an output
   //redLed.initialize();          // Initializes the red led as an output
   //whiteLed.initialize();        // Initializes the white led as an output
-  buzzEclair.initialize();
+  //buzzEclair.initialize();
+  dropTheMic.initialize();
   //weFee.initialize();
 }
 
@@ -48,7 +50,8 @@ void loop() {
   //blueLed.blinkLed();    // Blinks blue built-in led
   //redLed.blinkLed();     // Blinks red led
   //whiteLed.blinkLed();   // Blinks white led
-  
+  //dropTheMic.musicOn();
+  //dropTheMic.alarmOn();
   //buzzEclair.bipBuzzer();
   //buzzEclair.singSong();
 
