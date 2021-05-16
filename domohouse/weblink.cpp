@@ -1,5 +1,5 @@
 #include "weblink.h"
-
+/*
 //-----------WIFI MODULE----------//
 
 // Constructeurs
@@ -152,3 +152,4 @@ void WifiModule::boucleWifi(void) {
     Serial.println("");
   }
 }
+*/

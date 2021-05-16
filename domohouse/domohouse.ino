@@ -29,25 +29,25 @@ Fichiers :
 #include "zedoor.h"
 
 //class Led blueLed;
-class WifiModule weFee; //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
-//class MyAlarm intruzion;
-//class MyMood goodMood;
+//class WifiModule weFee; //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
+class MyAlarm intruzion;
+class MyMood goodMood;
 
         // Set web server port number to 80
-        WiFiServer server(80);
+        //WiFiServer server(80);
 
 void setup() {
   Serial.begin(115200);           // pour le debug au printf sur la console
   //blueLed.initialize(PIN_OnBoardBlueLED);         // Initializes the built-in blue led as an output
-  weFee.initialize();
-  //intruzion.initialize();
-  //goodMood.initialize();
+  //weFee.initialize();
+  intruzion.initialize();
+  goodMood.initialize();
 }
 
 // the loop function runs over and over again forever
 void loop() {
   //blueLed.blinkLed();    // Blinks blue built-in led
-  weFee.boucleWifi();
-  //intruzion.alarmOn();
-  //goodMood.posey();
+  //weFee.boucleWifi();
+  intruzion.alarmOn();
+  goodMood.posey();
 }

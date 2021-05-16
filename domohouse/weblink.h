@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "kozy.h"
-
+/*
 // Load Wi-Fi library
 #include <ESP8266WiFi.h>
 
@@ -18,12 +18,12 @@ class WifiModule {
         void boucleWifi(); //Functionning loop for the Wifi Module
     private :
         // Set web server port number to 80
-        //WiFiServer server(SERVER_PORT);
+        WiFiServer server(SERVER_PORT);
 
         // Assign output variables to GPIO pins
         const int outputA = PIN_WhiteLED;
         const int outputB = PIN_RedLED;
 };
 
-
+*/
        
