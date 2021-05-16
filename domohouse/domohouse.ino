@@ -44,9 +44,30 @@ class Buzzer buzzEclair(PIN_Buzzer); //Si on veut créer un object avec le const
 class MyAlarm intruzion;
 class MyMood goodMood;
 
+const auto OpenDoorAngle = 180;
+const auto CloseDoorAngle = -180;
+const auto TimerOpenDoor1 = 400;
+const auto TimerOpenDoor2 = 100;
+const auto TimerOpenDoor3 = 50;
 
+//MonTouchSensor* Touch1;
+//MonServo* Servo1;
+//MaPorte* Porte1;
+DoorProject* ProjetPorte1;
 
+class Light jacquouilleLaFripouille; // Jour, Nuit, Jour, Nuit
+class Temperature caliente; // VAleur
 void setup() {
+  Serial.begin(38400);
+  //Serial.begin(115200);
+  //Servo1 = new MonServo();           //setup des pin pour le servomoteur
+  //Touch1 = new MonTouchSensor(); //setup des pin pour le touch sensor et la LED
+  //Porte1 = new MaPorte();
+  ProjetPorte1 = new DoorProject();
+
+
+  //jacquouilleLaFripouille.initialize(pinLightSensor);
+  //caliente.initialize(pinTempSensor);
   Serial.begin(115200);
 
   // Outputs
@@ -82,4 +103,10 @@ void loop() {
   //blueLed.blinkLed();    // Blinks blue built-in led
   intruzion.alarmOn();
   goodMood.posey();
+
+  ProjetPorte1->initDoorProject(TouchPin, ServoPin);
+  ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor2, TimerOpenDoor3);
+  ProjetPorte1->afficheInfos();
+
+
 }

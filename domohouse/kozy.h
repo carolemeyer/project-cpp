@@ -1,9 +1,3 @@
-/*
- * Author: Meyer Carole
- * Date: April 2021
- * Last rev: May 2021
- */
-
 #ifndef KOZY_H
 #define KOZY_H
 
@@ -56,7 +50,7 @@ class Led : public Actuator, public Digital {
 // Light sensor
 class Light : public Sensor, public Digital {
     public :
-      int initialize(int pinNb);
+      virtual void initialize(int pinNb);
       int getLightLevel(int pinNb);
 
     private :

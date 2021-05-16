@@ -1,8 +1,8 @@
 /*
- * Author : Lea Pitault
- * 
- * 
- */
+   Author : Lea Pitault
+
+
+*/
 
 #ifndef ZEDOOR_H
 #define ZEDOOR
@@ -13,49 +13,114 @@
 //            CLASSE TOUCHSENSOR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MonTouchSensor
+class MonTouchSensor : public Sensor, public Digital
 {
-public:
-  //----------------------------constructeurs----------------------------//
-  MonTouchSensor();
+  public:
+    //----------------------------constructeurs----------------------------//
+    MonTouchSensor();
 
-  MonTouchSensor(int TouchP, int LedP);
+    //---------------------------- destructeur ----------------------------//
+    ~MonTouchSensor();
 
-  //---------------------------- destructeur ----------------------------//
-  ~MonTouchSensor();
+    //----------------------------- fonctions -----------------------------//
+    virtual void initialize(int pinNb) override;
+    boolean getTouch(); //methode propre a la classe N+1 touchSensor
+    void affichageEtatTouch();
+    int getTimer() ;
 
-  //----------------------------- fonctions -----------------------------//
-  void useTouchSensor(); //methode propre a la classe N+1 touchSensor
-
-protected:
-int touchPin;
-int ledPin;
+  protected:
+    int touchPin;
+    int timer;
+    boolean touch_OK;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE SERVOMOTEUR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-class MonServo
+class MonServo : public Actuator, public Digital
 {
-public:
-  //----------------------------constructeurs----------------------------//
-  MonServo();
+  public:
+    //----------------------------constructeurs----------------------------//
+    MonServo();
 
-  MonServo(int ServoPin);
+    //---------------------------- destructeur ----------------------------//
+    ~MonServo();
 
-  //---------------------------- destructeur ----------------------------//
-  ~MonServo();
+    //----------------------------- fonctions -----------------------------//
+    virtual void initialize(int pinNb) override;
 
-  //----------------------------- fonctions -----------------------------//
-  //virtual void initialize(int pinNb);
-  void moveServo(); //methode propre a la classe N+1 doorServo
+    //void moveServo(); //methode propre a la classe N+1 doorServo
+    void movePos(int pos);
+    int readPos();
 
-protected:
-int servoPin;
-Servo myservo;
+
+
+  protected:
+    //int servoPin;
+    Servo myservo;
 };
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE PORTE
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class MaPorte : private MonServo
+{
+  public:
+    //----------------------------constructeurs----------------------------//
+    MaPorte();
+
+    //---------------------------- destructeur ----------------------------//
+    ~MaPorte();
+
+    //----------------------------- fonctions -----------------------------//
+    void initPorte(int pinServo);
+    void movePorte(int pos);
+    int getPosPorte();
+
+  protected:
+    MonServo cerveau;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//             CLASSE Door_PROJET
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class DoorProject : private MaPorte, private MonTouchSensor
+{
+  public:
+    //----------------------------constructeurs----------------------------//
+    DoorProject();
+
+    //---------------------------- destructeur ----------------------------//
+    ~DoorProject();
+
+    //----------------------------- fonctions -----------------------------//
+    void initDoorProject(int pinSensor, int pinServo);
+    void runDoorProject(int posOpen, int posClose, int timer1, int timer2);
+    void afficheInfos();
+    int getDoorTimer();
+
+    int getDoorTimerOpen();
+    void setDoorTimerOpen(int timer);
+    void timerAdd();
+    void timerSub();
+    void setTimerNull();
+
+    int getOldEtat();
+    int getDoorEtat();
+    void setDoorEtat(int doorState);
+    void setOldTouch(int etat);
+
+  protected:
+    MaPorte porte;
+    MonTouchSensor touchS;
+    int timerDoor;
+    int timerOpen;
+    int oldEtat;
+    int doorClosed;
+
+};
 
 
 #endif //ZEDOOR_H

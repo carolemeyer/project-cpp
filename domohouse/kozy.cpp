@@ -1,19 +1,13 @@
-/*
- * Author: Meyer Carole
- * Date: April 2021
- * Last rev: May 2021
- */
-
 #include "kozy.h"
 
 // Classe light
 
-int Light::initialize(int pinNb) {
+void Light::initialize(int pinNb) {
   pinMode(pinNb, INPUT);
 }
 
 
-int Light::getLightLevel(int pinNb) {
+/*int Light::getLightLevel(int pinNb) {
   value = digitalRead(pinNb);
   Serial.print("Light Level = ");
   Serial.println(value);
