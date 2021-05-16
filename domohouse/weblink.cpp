@@ -1,7 +1,7 @@
 #include "weblink.h"
 
 //-----------WIFI MODULE----------//
-/*
+
 // Constructeurs
 
 WifiModule::WifiModule() {};
@@ -13,7 +13,7 @@ int WifiModule::initialize(void) {
   // Network credentials
   const char* ssid     = "1234";
   const char* password = "tegm1526";
-
+        
   Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(outputA, OUTPUT);
@@ -41,6 +41,7 @@ int WifiModule::initialize(void) {
 }
 
 void WifiModule::boucleWifi(void) {
+  
   // Variable to store the HTTP request
   String header;
 
@@ -151,4 +152,3 @@ void WifiModule::boucleWifi(void) {
     Serial.println("");
   }
 }
-*/
