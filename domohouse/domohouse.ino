@@ -64,12 +64,13 @@ void setup() {
 
   //jacquouilleLaFripouille.initialize(pinLightSensor);
   //caliente.initialize(pinTempSensor);
+  ProjetPorte1->initDoorProject(TouchPin, ServoPin);
+
 }
 
 void loop() {
 
 
-  ProjetPorte1->initDoorProject(TouchPin, ServoPin);
   ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor2, TimerOpenDoor3);
   ProjetPorte1->afficheInfos();
 
