@@ -1,38 +1,18 @@
 #include "kozy.h"
 
-// Classe light
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE LIGHT SENSOR
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Light::initialize(int pinNb) {
   pinMode(pinNb, INPUT);
 }
 
-
-/*int Light::getLightLevel(int pinNb) {
+void Light::getLightLevel(int pinNb) {
   value = digitalRead(pinNb);
   Serial.print("Light Level = ");
   Serial.println(value);
-}*/
-
-
-
-// //-----------BUZZER----------//
-// int Buzzer::initialize(int pinNb){
-//   pinMode(pinNb, OUTPUT);
-
-
-//-----------LED----------//
-// int Led::initialize(int pinNb){
-//   pinMode(pinNb, OUTPUT);       // Initializes the digital pin as an output.
-// }
-
-// void Led::blinkLed(int pinNb){
-//     digitalWrite(pinNb, LOW);           // Turns the LED on
-//     delay(1000);                      // Waits for a second
-//     digitalWrite(pinNb, HIGH);          // Turns the LED off by making the voltage HIGH
-//     delay(1000);                      // Waits for a second
-
-
-
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE LED
@@ -45,35 +25,34 @@ Led::~Led() {};
 
 // Public functions
         
-int Led::initialize(int pinNb){
-  pin = pinNb;
+void Led::initialize(int pinNb){
+  this->pinNb = pinNb;
   pinMode(pinNb, OUTPUT);       // Initializes the digital pin as an output.
-  return 0;
 }
 
 void Led::off(){
-  digitalWrite(pin, LOW); 
+  digitalWrite(pinNb, LOW); 
 }
 
 void Led::blinkLedParty(){
-  digitalWrite(pin, LOW);           // Turns the LED on
+  digitalWrite(pinNb, LOW);         // Turns the LED on
   delay(200);                       // Waits for 0.2 second
-  digitalWrite(pin, HIGH);          // Turns the LED off by making the voltage HIGH
+  digitalWrite(pinNb, HIGH);        // Turns the LED off by making the voltage HIGH
   delay(200);                       // Waits for 0.2 second
-  digitalWrite(pin, LOW);           // Turns the LED on
+  digitalWrite(pinNb, LOW);         // Turns the LED on
 }
 
 void Led::blinkLedFast(){
-  digitalWrite(pin, LOW);           // Turns the LED on
+  digitalWrite(pinNb, LOW);         // Turns the LED on
   delay(400);                       // Waits for 0.4 second
-  digitalWrite(pin, HIGH);          // Turns the LED off by making the voltage HIGH
+  digitalWrite(pinNb, HIGH);        // Turns the LED off by making the voltage HIGH
   delay(400);                       // Waits for 0.4 second
 }
 
 void Led::blinkLedSlow(){
-  digitalWrite(pin, LOW);           // Turns the LED on
+  digitalWrite(pinNb, LOW);         // Turns the LED on
   delay(1000);                      // Waits for a second
-  digitalWrite(pin, HIGH);          // Turns the LED off by making the voltage HIGH
+  digitalWrite(pinNb, HIGH);        // Turns the LED off by making the voltage HIGH
   delay(1000);                      // Waits for a second
 }
 
@@ -97,14 +76,13 @@ Speaker::~Speaker() {};
 
 // Public functions
         
-int Speaker::initialize(int pinNb){
-  pin = pinNb;
+void Speaker::initialize(int pinNb){
+  this->pinNb = pinNb;
   pinMode(pinNb, OUTPUT);       // Initializes the digital pin as an output.
-  return 0;
 }
 
 void Speaker::off(){
-  digitalWrite(PIN_Speaker,LOW);
+  digitalWrite(pinNb,LOW);
 }
 
 void Speaker::musicOn(){
@@ -127,9 +105,9 @@ void Speaker::alarmOn(){
 
 
 void Speaker::bipBuzzer(void){
-  digitalWrite(pin, HIGH);
+  digitalWrite(pinNb, HIGH);
   delay(1000);
-  digitalWrite(pin, LOW);
+  digitalWrite(pinNb, LOW);
   delay(1000);
 }
 
@@ -168,9 +146,9 @@ void Speaker::singMario(void){
 void Speaker::sound(uint8_t note_index){
   int BassTab[]={1911,1702,1516,1431,1275,1136,1012}; //bass 1~7
   for(int i=0;i<100;i++){
-     digitalWrite(PIN_Speaker,HIGH);
+     digitalWrite(pinNb,HIGH);
      delayMicroseconds(BassTab[note_index]);
-     digitalWrite(PIN_Speaker,LOW);
+     digitalWrite(pinNb,LOW);
      delayMicroseconds(BassTab[note_index]);
   }
 }
@@ -179,18 +157,18 @@ void Speaker::sound(uint8_t note_index){
 void Speaker::alarm(uint8_t note_index){
   int Alarm[]={1112,1711,1112,1711}; //alarm notes
   for(int i=0;i<100;i++){
-     digitalWrite(PIN_Speaker,HIGH);
+     digitalWrite(pinNb,HIGH);
      delayMicroseconds(Alarm[note_index]);
-     digitalWrite(PIN_Speaker,LOW);
+     digitalWrite(pinNb,LOW);
      delayMicroseconds(Alarm[note_index]);
   }
 }
 
 void Speaker::playTone(int tone, int duration) {
     for (long i = 0; i < duration * 1000L; i += tone * 2) {
-        digitalWrite(PIN_Speaker, HIGH);
+        digitalWrite(pinNb, HIGH);
         delayMicroseconds(tone);
-        digitalWrite(PIN_Speaker, LOW);
+        digitalWrite(pinNb, LOW);
         delayMicroseconds(tone);
     }
 }
@@ -223,7 +201,7 @@ MyAlarm::~MyAlarm() {}
 //fonction d'initialisation de l'alarme
 void MyAlarm::initialize(){
   redLed.initialize(PIN_RedLED);
-  dropTheMic.initialize(PIN_Speaker);
+  dropTheMic.initialize(PIN_Buzzer);
 }
 
 //fonction de déclenchement de l'alarme
@@ -257,7 +235,7 @@ MyMood::~MyMood() {}
 //fonction d'initialisation de l'alarme
 void MyMood::initialize(){
   whiteLed.initialize(PIN_WhiteLED);
-  dropTheMic.initialize(PIN_Speaker);
+  dropTheMic.initialize(PIN_Buzzer);
 }
 
 //fonction de déclenchement de l'alarme

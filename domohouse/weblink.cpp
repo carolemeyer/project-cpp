@@ -152,3 +152,14 @@ void WifiModule::boucleWifi(void) {
   }
 }
 */
+
+/* 
+ *  
+
+  // A mettre dans le WebLink (maybe)
+  Serial.print("\n\n\n");
+  Serial.print("##############################\n");
+  Serial.print("Your DomoHouse is starting....\n");
+  Serial.print("DomoHouse started !\n");
+  Serial.print("##############################\n");
+ */

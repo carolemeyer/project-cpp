@@ -6,7 +6,7 @@ void Temperature::initialize(int pinNb) {
 }
 
 
-/*int Temperature::getHeatLevel(int pinNb) {
+int Temperature::getHeatLevel(int pinNb) {
     value = analogRead(pinNb);
     float R = 1023.0/value-1.0;
     R = R0*R;
@@ -14,4 +14,4 @@ void Temperature::initialize(int pinNb) {
  
     Serial.print("Temperature = ");
     Serial.println(temperature);
-}*/
+}

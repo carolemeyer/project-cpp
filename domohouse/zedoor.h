@@ -48,8 +48,6 @@ class MonServo : public Actuator, public Digital
     void movePos(int pos);
     int readPos();
 
-
-
   protected:
     //int servoPin;
     Servo myservo;
