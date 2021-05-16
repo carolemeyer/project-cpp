@@ -3,10 +3,10 @@
 
 #include "includes.h"
 
-// #define PIN_WhiteLED D3                 // Connects White LED to digital pin D5
-// #define PIN_RedLED D5                   // Connects Green LED to digital pin D3
-// #define PIN_OnBoardBlueLED LED_BUILTIN  // BuiltIn Blue LED is already on board
-// #define PIN_Speaker D6                  // Connects Speaker to digital pin D6
+#define PIN_WhiteLED D3                 // Connects White LED to digital pin D5
+#define PIN_RedLED D5                   // Connects Green LED to digital pin D3
+#define PIN_OnBoardBlueLED LED_BUILTIN  // BuiltIn Blue LED is already on board
+#define PIN_Speaker D6                  // Connects Speaker to digital pin D6
  
 
 // //BUZZER
@@ -62,7 +62,7 @@ class Light : public Sensor, public Digital {
 
 
 //SPEAKER
-/*
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE SPEAKER
 ///////////////////////////////////////////////////////////////////////////////////////////////////

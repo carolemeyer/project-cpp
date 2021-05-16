@@ -11,7 +11,7 @@ void Light::initialize(int pinNb) {
   value = digitalRead(pinNb);
   Serial.print("Light Level = ");
   Serial.println(value);
-}
+}*/
 
 
 

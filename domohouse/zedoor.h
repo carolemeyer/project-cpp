@@ -1,9 +1,3 @@
-/*
-   Author : Lea Pitault
-
-
-*/
-
 #ifndef ZEDOOR_H
 #define ZEDOOR
 
