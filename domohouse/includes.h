@@ -20,6 +20,12 @@
 // Wifi 
 //#include <ESP8266WiFi.h>
 
+//// OUR OWN FILES ////
+#include "tempe.h"
+#include "kozy.h"
+#include "weblink.h"
+#include "zedoor.h"
+
 //// PIN DEFINITIONS ////
 #define PIN_TempSensor  A0              // Connect Temperature Sensor to pin A0
 //#define PIN_LightSensor D3              // Connect Light Sensor to pin D3

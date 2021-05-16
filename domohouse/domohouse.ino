@@ -12,10 +12,6 @@
 */
 
 #include "includes.h"
-#include "tempe.h"
-#include "kozy.h"
-#include "weblink.h"
-#include "zedoor.h"
 
 //// CLASS INSTANCIATIONS //// //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
 // Tempe.cpp

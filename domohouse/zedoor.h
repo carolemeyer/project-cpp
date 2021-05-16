@@ -1,5 +1,5 @@
 #ifndef ZEDOOR_H
-#define ZEDOOR
+#define ZEDOOR_H
 
 #include "includes.h"
 

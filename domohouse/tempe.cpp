@@ -6,7 +6,7 @@ void Temperature::initialize(int pinNb) {
 }
 
 
-int Temperature::getHeatLevel(int pinNb) {
+void Temperature::getHeatLevel(int pinNb) {
     value = analogRead(pinNb);
     float R = 1023.0/value-1.0;
     R = R0*R;
