@@ -25,7 +25,7 @@ class MonTouchSensor : public Sensor, public Digital
   protected:
     int touchPin;
     int timer;
-    boolean touch_OK;
+    boolean touchOK;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,17 +99,18 @@ class DoorProject : private MaPorte, private MonTouchSensor
     void timerSub();
     void setTimerNull();
 
-    int getOldEtat();
+    int getOldTouch();
+    void setOldTouch(int etat);
     int getDoorEtat();
     void setDoorEtat(int doorState);
-    void setOldTouch(int etat);
+
 
   protected:
     MaPorte porte;
     MonTouchSensor touchS;
     int timerDoor;
     int timerOpen;
-    int oldEtat;
+    int oldTouch;
     int doorClosed;
 
 };

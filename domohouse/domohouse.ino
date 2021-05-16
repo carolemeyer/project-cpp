@@ -40,10 +40,20 @@ void setup() {
   goodMood.initialize();
   // Zedoor.cpp
   ProjetPorte1 = new DoorProject();
+
   ProjetPorte1->initDoorProject(PIN_TouchPin, PIN_ServoPin);
   // Weblink.cpp
   //weFee.initialize();
+
+
+
+  //jacquouilleLaFripouille.initialize(pinLightSensor);
+  //caliente.initialize(pinTempSensor);
+  ProjetPorte1->initDoorProject(TouchPin, ServoPin);
+
+
 }
+
 
 
 
@@ -56,6 +66,8 @@ void loop() {
   intruzion.alarmOn();
   goodMood.posey();
   // Zedoor.cpp
+
+
   ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor2, TimerOpenDoor3);
   ProjetPorte1->afficheInfos();
   // Weblink.cpp

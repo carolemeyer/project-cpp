@@ -33,16 +33,16 @@ boolean MonTouchSensor::getTouch() {
   int sensorValue = digitalRead(touchPin);
   if (sensorValue == 1)
   {
-    touch_OK = true;
+    touchOK = true;
     //timer++;
   }
   else {
-    touch_OK = false;
+    touchOK = false;
     //if ((timer--) <= 0) {
     //timer = 0;
     // }
   }
-  return touch_OK;
+  return touchOK;
 
 }
 
@@ -52,7 +52,7 @@ int MonTouchSensor::getTimer() {
 
 void MonTouchSensor::affichageEtatTouch() {
   Serial.print("Etat du touch : " );
-  Serial.println(touch_OK);
+  Serial.println(touchOK);
   Serial.print("Etat du timer : " );
   Serial.println(timer);
 }
@@ -163,7 +163,7 @@ void DoorProject::runDoorProject(int posOpen, int posClose, int timer1, int time
     setOldTouch(touchS.getTouch());
     timerAdd();
   } else {
-    if ((getOldEtat() == 1) && (porte.getPosPorte() == posOpen)) {
+    if ((getOldTouch() == 1) && (porte.getPosPorte() == posOpen)) {
       setDoorTimerOpen(getDoorTimer());
       //timerOpen = getDoorTimer();
     }
@@ -212,12 +212,12 @@ void DoorProject::setDoorTimerOpen(int timer) {
   timerOpen = timer;
 }
 
-int DoorProject::getOldEtat() {
-  return oldEtat;
+int DoorProject::getOldTouch() {
+  return oldTouch;
 }
 
 void DoorProject::setOldTouch(int etat) {
-  oldEtat = etat;
+  oldTouch = etat;
 }
 
 int DoorProject::getDoorEtat() {
