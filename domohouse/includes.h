@@ -8,13 +8,17 @@
 // I/O
 #include <iostream>
 
-// Multithreading
-#include <thread>
-
 // Classes N
 #include "classes.h"
 
 // Other functions
 #include <math.h>
+
+//Servo
+#include <Servo.h>
+
+// Wifi 
+//#include <ESP8266WiFi.h>
+
 
 #endif

@@ -1,31 +1,19 @@
 #include "weblink.h"
 
-// Replace with your network credentials
-const char* ssid     = "1234";
-const char* password = "tegm1526";
+//-----------WIFI MODULE----------//
+/*
+// Constructeurs
 
-// Set web server port number to 80
-WiFiServer server(80);
+WifiModule::WifiModule() {};
+WifiModule::~WifiModule() {};
 
-// Variable to store the HTTP request
-String header;
+// Public functions
+        
+int WifiModule::initialize(void) {
+  // Network credentials
+  const char* ssid     = "1234";
+  const char* password = "tegm1526";
 
-// Auxiliar variables to store the current output state
-String outputAState = "off";
-String outputBState = "off";
-
-// Assign output variables to GPIO pins
-const int outputA = PIN_WhiteLED;
-const int outputB = PIN_GreenLED;
-
-// Current time
-unsigned long currentTime = millis();
-// Previous time
-unsigned long previousTime = 0;
-// Define timeout time in milliseconds (example: 2000ms = 2s)
-const long timeoutTime = 2000;
-
-void configWifi() {
   Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(outputA, OUTPUT);
@@ -48,9 +36,25 @@ void configWifi() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   server.begin();
+  
+  return 0;
 }
 
-void boucleWifi(void) {
+void WifiModule::boucleWifi(void) {
+  // Variable to store the HTTP request
+  String header;
+
+  // Auxiliar variables to store the current output state
+  String outputAState = "off";
+  String outputBState = "off";
+
+  // Current time
+  unsigned long currentTime = millis();
+  // Previous time
+  unsigned long previousTime = 0;
+  // Define timeout time in milliseconds (example: 2000ms = 2s)
+  const long timeoutTime = 2000;
+
   WiFiClient client = server.available();   // Listen for incoming clients
 
   if (client) {                             // If a new client connects,
@@ -147,3 +151,4 @@ void boucleWifi(void) {
     Serial.println("");
   }
 }
+*/
