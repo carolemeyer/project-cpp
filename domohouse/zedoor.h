@@ -1,7 +1,9 @@
 #ifndef ZEDOOR_H
-#define ZEDOOR_H
+#define ZEDOOR
 
 #include "includes.h"
+#include "kozy.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE TOUCHSENSOR
@@ -25,7 +27,7 @@ class MonTouchSensor : public Sensor, public Digital
   protected:
     int touchPin;
     int timer;
-    boolean touch_OK;
+    boolean touchOK;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,13 +45,10 @@ class MonServo : public Actuator, public Digital
 
     //----------------------------- fonctions -----------------------------//
     virtual void initialize(int pinNb) override;
-
-    //void moveServo(); //methode propre a la classe N+1 doorServo
     void movePos(int pos);
     int readPos();
 
   protected:
-    //int servoPin;
     Servo myservo;
 };
 
@@ -78,7 +77,7 @@ class MaPorte : private MonServo
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //             CLASSE Door_PROJET
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-class DoorProject : private MaPorte, private MonTouchSensor
+class DoorProject : private MaPorte, private MonTouchSensor, protected MyAlarm
 {
   public:
     //----------------------------constructeurs----------------------------//
@@ -88,8 +87,9 @@ class DoorProject : private MaPorte, private MonTouchSensor
     ~DoorProject();
 
     //----------------------------- fonctions -----------------------------//
-    void initDoorProject(int pinSensor, int pinServo);
+    void initDoorProject(int pinSensor, int pinServo, int posClose);
     void runDoorProject(int posOpen, int posClose, int timer1, int timer2);
+
     void afficheInfos();
     int getDoorTimer();
 
@@ -99,18 +99,26 @@ class DoorProject : private MaPorte, private MonTouchSensor
     void timerSub();
     void setTimerNull();
 
-    int getOldEtat();
+    int getOldTouch();
+    void setOldTouch(int etat);
     int getDoorEtat();
     void setDoorEtat(int doorState);
-    void setOldTouch(int etat);
+
+    int getDoorPos();
+    void setDoorPos(int pos);
+
+    boolean getIntrusion();
+    void setIntrusion(boolean intru);
 
   protected:
     MaPorte porte;
     MonTouchSensor touchS;
     int timerDoor;
     int timerOpen;
-    int oldEtat;
+    int oldTouch;
     int doorClosed;
+    MyAlarm alarm;
+    boolean intrusion;
 
 };
 

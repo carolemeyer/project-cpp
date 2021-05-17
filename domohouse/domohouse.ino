@@ -13,6 +13,12 @@
 
 #include "includes.h"
 
+//// OUR OWN FILES ////
+#include "tempe.h"
+#include "kozy.h"
+#include "weblink.h"
+#include "zedoor.h"
+
 //// CLASS INSTANCIATIONS //// //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
 // Tempe.cpp
 class Temperature caliente;
@@ -36,7 +42,7 @@ void setup() {
   goodMood.initialize();
   // Zedoor.cpp
   ProjetPorte1 = new DoorProject();
-  ProjetPorte1->initDoorProject(PIN_TouchPin, PIN_ServoPin);
+  ProjetPorte1->initDoorProject(PIN_TouchPin, PIN_ServoPin, CloseDoorAngle);
   // Weblink.cpp
   //weFee.initialize();
 }
@@ -46,13 +52,13 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {  
   // Tempe.cpp
-  caliente.getHeatLevel(PIN_TempSensor);
+  //caliente.getHeatLevel(PIN_TempSensor);
   // Kosy.cpp
   //jacquouilleLaFripouille.getLightLevel(pinLightSensor);
-  intruzion.alarmOn();
-  goodMood.posey();
+  //intruzion.alarmOn();
+  //goodMood.posey();
   // Zedoor.cpp
-  ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor2, TimerOpenDoor3);
+  ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor1, TimerOpenDoor2);
   ProjetPorte1->afficheInfos();
   // Weblink.cpp
   //weFee.boucleWifi();
