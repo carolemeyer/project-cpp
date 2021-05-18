@@ -7,7 +7,7 @@
 class Temperature : public Sensor, public Analog {
     public :
         virtual void initialize(int pinNb) override;
-        void getHeatLevel(int pinNb);
+        //void getHeatLevel(int pinNb);
 
     private:
         int value = 0;

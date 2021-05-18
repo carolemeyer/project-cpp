@@ -2,6 +2,31 @@
 #define KOZY_H
 
 #include "includes.h"
+#include <list>
+using namespace std;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE FRIDGE
+///////////////////////////////////////////////////////////////////////////////////////////////////
+class MyFridge {
+public:
+  MyFridge();
+  ~MyFridge();
+  void initialize(void);
+  void use(void);
+private:
+  int doorOpened = 0;
+  int nbItems = 0;
+  list <String> frigo;
+  // Private functions
+  void whatsInside(void);
+  void tidy(void);
+  void empty(void);
+  void add(String item);
+  void openDoor(void);
+  void closeDoor(void);
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE LIGHT SENSOR

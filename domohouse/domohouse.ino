@@ -26,6 +26,7 @@ class Temperature caliente;
 //class Light jacquouilleLaFripouille; // Jour, Nuit, Jour, Nuit
 class MyAlarm intruzion;
 class MyMood goodMood;
+class MyFridge monFrigo;
 // Zedoor.cpp
 DoorProject* ProjetPorte1;
 // Weblink.cpp
@@ -34,17 +35,20 @@ DoorProject* ProjetPorte1;
 //// INIT ////
 void setup() {
   Serial.begin(115200);
+  welcome();
   // Tempe.cpp
   caliente.initialize(PIN_TempSensor);  // Initializes the temperature sensor as input
   // Kozy.cpp
   //jacquouilleLaFripouille.initialize(PIN_LightSensor); // Initializes the light sensor as input
   intruzion.initialize();
   goodMood.initialize();
+  monFrigo.initialize();
   // Zedoor.cpp
   ProjetPorte1 = new DoorProject();
   ProjetPorte1->initDoorProject(PIN_TouchPin, PIN_ServoPin, CloseDoorAngle);
   // Weblink.cpp
   //weFee.initialize();
+  monFrigo.use();
 }
 
 
@@ -62,4 +66,10 @@ void loop() {
   ProjetPorte1->afficheInfos();
   // Weblink.cpp
   //weFee.boucleWifi();
+}
+
+void welcome(void) {
+  Serial.println("\n###############################################");
+  Serial.println("##         Welcome to the DomoHouse          ##");
+  Serial.println("###############################################");
 }

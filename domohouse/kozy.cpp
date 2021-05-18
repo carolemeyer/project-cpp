@@ -1,6 +1,107 @@
 #include "kozy.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+//            CLASSE FRIDGE
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Constructor and destructor
+
+MyFridge::MyFridge() {};
+MyFridge::~MyFridge() {};
+
+// Public functions 
+
+void MyFridge::initialize(void) {
+  Serial.println("\nInitializing the refrigerator with eggs and bacon...");
+  delay(2000);
+  this->add("eggs");
+  delay(1000);
+  this->add("bacon");
+  delay(3000);
+}
+
+void MyFridge::use(void) {
+  String inputA = "N";
+  String inputB = "N";
+  Serial.print("\nDo you want to use the refridgerator ? Y/N ");
+  delay(10000);
+  if(Serial.available()){
+        inputA = Serial.readStringUntil('\n');
+        Serial.println(inputA);
+  }
+  if (inputA == "Y") {
+    this->openDoor();
+    this->whatsInside();
+    Serial.print("Do you want to add something in the refridgerator ? Y/N ");
+    delay(10000);
+    if(Serial.available()){
+      inputB = Serial.readStringUntil('\n');
+      Serial.println(inputB);
+    }
+    if (inputB == "Y") {
+      this->add("tomatoes");
+      this->add("cucumber");
+      this->tidy();
+      this->whatsInside();
+    }
+    delay(10000);
+    this->closeDoor();
+  }
+}
+
+// Private functions 
+
+void MyFridge::whatsInside(void) {
+  Serial.print("Inside your refrigerator you have... ");
+  for (String ref : frigo) {
+    Serial.print(ref);
+    Serial.print(" ");
+  }
+  Serial.print("\n");
+}
+
+void MyFridge::tidy(void) {
+  Serial.print("Tidying your refrigerator... \n");
+  frigo.sort();
+}
+
+void MyFridge::empty(void) {
+  Serial.print("Emptying your refrigerator... \n");
+  list<String>::iterator itdebut = frigo.begin();
+  list<String>::iterator itfin = frigo.begin();
+  advance(itfin, frigo.size()); //dans la lib STL
+  frigo.erase(itdebut, itfin);
+}
+
+void MyFridge::add(String item) {
+  Serial.print("Adding ");
+  Serial.print(item);
+  Serial.print("\n");
+  frigo.push_back(item);
+  nbItems++;
+}
+
+void MyFridge::openDoor(void) {
+  if (doorOpened == 0) {
+    Serial.print("Opening the refrigerator's door... \n");
+    doorOpened = 1;
+  }
+  else {
+    Serial.print("The refrigerator's door is already opened... \n");
+  }
+}
+
+void MyFridge::closeDoor(void) {
+  if (doorOpened == 1) {
+    Serial.print("Closing the refrigerator's door... \n");
+    doorOpened = 0;
+  }
+  else {
+    Serial.print("The refrigerator's door is already closed... \n");
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE LIGHT SENSOR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -206,6 +307,7 @@ void MyAlarm::initialize(){
 
 //fonction de déclenchement de l'alarme
 void MyAlarm::alarmOn(){
+  Serial.println("!!! INTRUSION !!! INTRUSION !!! INTRUSION !!!");
   for (int i=0; i<3; i++) {
     redLed.blinkLedFast();  // Blinks red led
     redLed.blinkLedFast();

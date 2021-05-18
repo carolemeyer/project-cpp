@@ -13,6 +13,7 @@
 
 // Other functions
 #include <math.h>
+#include <string.h>
 
 //Servo
 #include <Servo.h>
