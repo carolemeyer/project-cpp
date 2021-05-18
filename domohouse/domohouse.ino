@@ -5,9 +5,8 @@
   - classes   : définition des classes de base pour actionneurs et capteurs, analogiques ou numériques
   - includes  : chargé d'inclure toutes les bibliothèques qui vont bien et fixer les pins et autres valeurs
   - weblink   : wifi, serveur web
-  - kozy      : frigo, lumières, musique
+  - kozy      : frigo, lumières, musique, alarme
   - zedoor    : servo, capteur ouverture de porte
-  - amongueus : detection intru + alarme
 */
 
 //// OUR OWN FILES ////
