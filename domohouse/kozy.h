@@ -31,7 +31,9 @@ class Led : protected Actuator, protected Digital {
         void blinkLedParty(void);                   // Blinks the LED for 0.2 second - to put in the loop
         void blinkLedFast(void);                    // Blinks the LED for 0.4 second - to put in the loop
         void blinkLedSlow(void);                    // Blinks the LED for one second - to put in the loop
-        void alternativeBlink(int pin1, int pin2);  // Alternatively blinks one LED and the other - to put in the loop    
+        void alternativeBlink(int pin1, int pin2);  // Alternatively blinks one LED and the other - to put in the loop
+
+        Led & operator= (const Led & other);
 };
 
 
@@ -78,7 +80,8 @@ class MyAlarm : protected Speaker, protected Led {
 
   protected:
     Speaker dropTheMic;
-    Led redLed;    
+    Led redLed;
+    Led greenLed;    
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,7 +102,8 @@ class MyMood : protected Speaker, protected Led {
 
   protected:
     Speaker dropTheMic;
-    Led whiteLed;    
+    Led whiteLed;
+    
 };
 
 

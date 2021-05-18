@@ -23,6 +23,11 @@ void Light::getLightLevel(int pinNb) {
 Led::Led() {};
 Led::~Led() {};
 
+// Operators
+Led & Led::operator= (const Led & other) {
+  return *this;
+}
+
 // Public functions
         
 void Led::initialize(int pinNb){
@@ -201,6 +206,8 @@ MyAlarm::~MyAlarm() {}
 //fonction d'initialisation de l'alarme
 void MyAlarm::initialize(){
   redLed.initialize(PIN_RedLED);
+  greenLed = redLed;  // On a pas de greenLed, mais on fait en sorte d'utiliser la surcharge
+                      // d'opérateur au cas où on met une greenLed sur le même port
   dropTheMic.initialize(PIN_Buzzer);
 }
 
@@ -232,17 +239,17 @@ MyMood::~MyMood() {}
 
 //---------------------------- functions -----------------------------//
 
-//fonction d'initialisation de l'alarme
+//fonction d'initialisation du mood
 void MyMood::initialize(){
   whiteLed.initialize(PIN_WhiteLED);
   dropTheMic.initialize(PIN_Buzzer);
 }
 
-//fonction de déclenchement de l'alarme
+//fonction de déclenchement de la party
 void MyMood::posey(){
   for (int j=0; j<4; j++) {
     whiteLed.blinkLedParty();  // Blinks white led
     whiteLed.blinkLedFast();
   }
-  dropTheMic.singMario();    // Sings a cool song
+  dropTheMic.singSong();    // Sings a cool song
 }
