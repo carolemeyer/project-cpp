@@ -19,7 +19,6 @@ class Actuator {
     public :
       virtual void initialize(int pinNb) = 0; // Initialise pin
 
-
     private :
         int nbActuators;
 };

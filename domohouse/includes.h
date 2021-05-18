@@ -32,7 +32,7 @@
 #define PIN_OnBoardBlueLED LED_BUILTIN  // BuiltIn Blue LED is already on board
 
 //// VARIABLES ////
-#define OpenDoorAngle   0
+//#define OpenDoorAngle   0
 #define CloseDoorAngle  90
 #define TimerOpenDoor1  150
 #define TimerOpenDoor2  50

@@ -1,6 +1,6 @@
 #ifndef IFTTT_H
 #define IFTTT_H
-
+/*
 #include "includes.h"
 #include <stdint.h>
 #include "../generic/common.h"
@@ -8,10 +8,8 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
-
 #define WLAN_SSID       "@RomainChlt's Galaxy S20 FE"
 #define WLAN_PASS       "voyageur"
-
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   
@@ -37,5 +35,5 @@ class IFTTTFeed{
         void notifyFeed();
 };
 
-
-#endif
+*/
+#endif 
