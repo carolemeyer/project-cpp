@@ -14,7 +14,7 @@
   line "#define MODE 0" just below.
   >>> NORMAL MODE : to use this mode, please define MODE as 0. 
   In this mode you can: 
-      - Use and add somthing in the refrigerator using the serial monitor
+      - Use and add something in the refrigerator using the serial monitor
       - Activate lights and nice music depending on the temperature (over 28°C)
       - Open the door by touching the sensor next to it for a short time (about one second)
       - Trigger an intrusion alarm by touching the sensor for too long
