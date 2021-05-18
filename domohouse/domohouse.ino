@@ -15,6 +15,7 @@
 #include "kozy.h"
 #include "weblink.h"
 #include "zedoor.h"
+#include "IFTTTFeed.h"
 
 // HERE YOU DEFINE WHETHER YOU WANT TO USE THE HOUSE IN NORMAL OR DOMOTIK (WIFI) MODE
 #define MODE 1 // MODE 0 is Normal mode ; MODE 1 is Domotik (Wifi) mode ;
@@ -62,18 +63,27 @@ void loop() {
 #else // DOMOTIK (WIFI) MODE
 
 //// INIT ////
+
+IFTTTFeed* Feed;
+
 void setup() {
   Serial.begin(115200);
   welcome();
   
   // Weblink.cpp
   initializeWifi();
+
+  // IFTTFeed.cpp
+  Feed = new IFTTTFeed();
 }
 
 //// LOOP //// the loop function runs over and over again forever
 void loop() {  
   // Weblink.cpp
   startWifi();
+
+  // Read feed
+  string value = Feed->readFeed();
 }
 
 #endif
