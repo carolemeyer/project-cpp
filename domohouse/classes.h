@@ -29,9 +29,6 @@ class Actuator {
 class Digital {
     public :
 
-    private :
-
-
     protected :
       // Valeur du pin
       int pinNb;
@@ -44,8 +41,9 @@ class Analog {
     public :
 
 
-    private :
-
+    protected :
+      // Valeur du pin
+      int pinNb;
 
 };
 
