@@ -3,31 +3,33 @@
   Context: 4th year C++ course at INSA de Toulouse 
 
   Files:
-  - classes   : definition of the basic classes for sensors and actuators, analog or digital
-  - includes  : shall include all the libraries we need for this project and define pin numbers and other values
-  - weblink   : wifi, web server
-  - kozy      : refrigerator, (LED) lights, (Buzzer) music, intrusion alarm
-  - zedoor    : servo, door opening sensor
+  - classes.h   : definition of the basic classes for sensors and actuators, analog or digital
+  - includes.h  : shall include all the libraries we need for this project and define pin numbers and other values
+  - weblink     : wifi, web server
+  - kozy        : refrigerator, (LED) lights, (Buzzer) music, intrusion alarm
+  - zedoor      : servo, door opening sensor
+  - IFTTTFeed   : all the code needed to log in, subscribe and track the feed of the neighbours
 
   Modes: 
   The DomoHouse has two functioning modes. The user can chose between one mode or the other by modifying the 
   line "#define MODE 0" just below.
-  >>> NORMAL MODE : to use this mode, please define MODE as 0. 
-  In this mode you can: 
-      - Use and add something in the refrigerator using the serial monitor
-      - Activate lights and nice music depending on the temperature (over 28°C)
-      - Open the door by touching the sensor next to it for a short time (about one second)
-      - Trigger an intrusion alarm by touching the sensor for too long
-  >>> DOMOTIK (WiFi) MODE : to use this mode, please define MODE as 1. 
-  In this mode you can take over the house with your phone, once they are connected to the same WiFi network. 
-  To connect the house to your phone, please follow these instructions: 
-      - Activate the WiFi access point on your phone
-      - Enter the network credentials in weblink.cpp as :
-          --> const char* ssid     = "name-of-your-wifi-network";
-          --> const char* password = "password-of-your-wifi-network";
-      - Open the serial monitor, it will give you an IP address
-      - Enter this IP address on your favorite browser
-      - Congratulations, you accessed the house's dedicated web page!
+    >>> NORMAL MODE : to use this mode, please define MODE as 0. 
+      In this mode you can: 
+        - Use and add something in the refrigerator using the serial monitor
+        - Activate lights and nice music depending on the temperature (over 28°C)
+        - Open the door by touching the sensor next to it for a short time (about one second)
+        - Trigger an intrusion alarm by touching the sensor for too long
+    >>> DOMOTIK (WiFi) MODE : to use this mode, please define MODE as 1. 
+      In this mode you can take over the house with your phone, once they are connected to the same WiFi network.
+      Then, if an intrusion is detected in another team's house, it triggers ours too.
+      To connect the house to your phone, please follow these instructions: 
+        - Activate the WiFi access point on your phone
+        - Enter the network credentials in weblink.cpp as :
+            --> const char* ssid     = "name-of-your-wifi-network";
+            --> const char* password = "password-of-your-wifi-network";
+        - Open the serial monitor, it will give you an IP address
+        - Enter this IP address on your favorite browser
+        - Congratulations, you accessed the house's dedicated web page!
   
   Specifications and where to find them (in French): 
   - Création de plusieurs classes       : classes.h, module kozy, module tempe, module zedoor
