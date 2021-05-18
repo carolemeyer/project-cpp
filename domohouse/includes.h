@@ -19,7 +19,7 @@
 #include <Servo.h>
 
 // Wifi 
-//#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>
 
 //// PIN DEFINITIONS ////
 #define PIN_TempSensor  A0              // Connect Temperature Sensor to pin A0

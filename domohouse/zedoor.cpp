@@ -6,18 +6,11 @@
 
 //----------------------------constructeurs----------------------------//
 
-MonTouchSensor::MonTouchSensor() {
-}
-
-/*MonTouchSensor::MonTouchSensor(int TouchP, int LedP): touchPin(TouchP), ledPin(LedP) {
-  pinMode(touchPin, INPUT);
-  pinMode(ledPin, OUTPUT);
-  }*/
+MonTouchSensor::MonTouchSensor() {}
 
 //---------------------------- destructeur ----------------------------//
 
-MonTouchSensor::~MonTouchSensor() {
-}
+MonTouchSensor::~MonTouchSensor() {}
 
 //----------------------------fonctions----------------------------//
 
@@ -34,7 +27,6 @@ boolean MonTouchSensor::getTouch() {
   if (sensorValue == 1)
   {
     touchOK = true;
-    //timer++;
   }
   else {
     touchOK = false;
@@ -47,27 +39,17 @@ int MonTouchSensor::getTimer() {
   return timer;
 }
 
-/*void MonTouchSensor::affichageEtatTouch() {
-  Serial.print("Etat du touch : " );
-  Serial.println(touchOK);
-  Serial.print("Etat du timer : " );
-  Serial.println(timer);
-  }*/
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE SERVOMOTEUR
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //----------------------------constructeurs----------------------------//
 
-MonServo::MonServo() {
-}
-
+MonServo::MonServo() {}
 
 //---------------------------- destructeur ----------------------------//
 
-MonServo::~MonServo() {
-}
+MonServo::~MonServo() {}
 
 //----------------------------fonctions----------------------------//
 
@@ -81,8 +63,6 @@ void MonServo::movePos(int pos) {
 }
 
 int MonServo::readPos() {
-  //Serial.print("position de la porte au niveau servo");
-  //Serial.println(myservo.read());
   return myservo.read();
 }
 
@@ -92,14 +72,11 @@ int MonServo::readPos() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------constructeurs----------------------------//
 
-MaPorte::MaPorte(): MonServo() {
-}
-
+MaPorte::MaPorte(): MonServo() {}
 
 //---------------------------- destructeur ----------------------------//
 
-MaPorte::~MaPorte() {
-}
+MaPorte::~MaPorte() {}
 
 //----------------------------fonctions----------------------------//
 
@@ -113,8 +90,6 @@ void MaPorte::movePorte(int pos) {
 }
 
 int MaPorte::getPosPorte() {
-  //Serial.print("position de la porte au niveau porte");
-  //Serial.println(cerveau.readPos());
   return cerveau.readPos();
 }
 
@@ -124,14 +99,11 @@ int MaPorte::getPosPorte() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------constructeurs----------------------------//
 
-DoorProject::DoorProject(): MaPorte(), MonTouchSensor() {
-}
-
+DoorProject::DoorProject(): MaPorte(), MonTouchSensor() {}
 
 //---------------------------- destructeur ----------------------------//
 
-DoorProject::~DoorProject() {
-}
+DoorProject::~DoorProject() {}
 
 //----------------------------fonctions----------------------------//
 
@@ -145,7 +117,6 @@ void DoorProject::initDoorProject(int pinSensor, int pinServo, int posClose) {
   setIntrusion(false);
 }
 
-
 void DoorProject::runDoorProject(int posOpen, int posClose, int timer1, int timer2) {
   if (getIntrusion() == false) {
     if  (touchS.getTouch() == true) {
@@ -156,7 +127,7 @@ void DoorProject::runDoorProject(int posOpen, int posClose, int timer1, int time
         alarm.alarmOn();
         setIntrusion(true);
       }
-    } else { //si on n'appuit plus sur le sensor
+    } else { //si on n'appuie plus sur le sensor
       //si l'ancien etat etait appuyé et que la porte est ouverte
       if (getOldTouch() == 1) {
         if (getDoorPos() == posOpen) {
@@ -189,7 +160,6 @@ void DoorProject::runDoorProject(int posOpen, int posClose, int timer1, int time
     }
   }
 }
-
 
 void DoorProject::timerAdd() {
   timerDoor++;

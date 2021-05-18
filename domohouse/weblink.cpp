@@ -1,19 +1,36 @@
 #include "weblink.h"
 
-//-----------WIFI MODULE----------//
-/*
-// Constructeurs
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//            WiFi module
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
-WifiModule::WifiModule() {};
-WifiModule::~WifiModule() {};
+// Replace with your network credentials
+const char* ssid     = "1234";
+const char* password = "tegm1526";
 
-// Public functions
-        
-int WifiModule::initialize(void) {
-  // Network credentials
-  const char* ssid     = "1234";
-  const char* password = "tegm1526";
+// Set web server port number to 80
+WiFiServer server(80);
 
+// Variable to store the HTTP request
+String header;
+
+// Auxiliar variables to store the current output state
+String outputAState = "off";
+String outputBState = "off";
+
+
+// Assign output variables to GPIO pins
+const int outputA = PIN_WhiteLED;
+const int outputB = PIN_RedLED;
+
+// Current time
+unsigned long currentTime = millis();
+// Previous time
+unsigned long previousTime = 0;
+// Define timeout time in milliseconds (example: 2000ms = 2s)
+const long timeoutTime = 2000;
+
+void initializeWifi(void)  {
   Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(outputA, OUTPUT);
@@ -36,25 +53,9 @@ int WifiModule::initialize(void) {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
   server.begin();
-  
-  return 0;
 }
 
-void WifiModule::boucleWifi(void) {
-  // Variable to store the HTTP request
-  String header;
-
-  // Auxiliar variables to store the current output state
-  String outputAState = "off";
-  String outputBState = "off";
-
-  // Current time
-  unsigned long currentTime = millis();
-  // Previous time
-  unsigned long previousTime = 0;
-  // Define timeout time in milliseconds (example: 2000ms = 2s)
-  const long timeoutTime = 2000;
-
+void startWifi(void) {
   WiFiClient client = server.available();   // Listen for incoming clients
 
   if (client) {                             // If a new client connects,
@@ -151,15 +152,3 @@ void WifiModule::boucleWifi(void) {
     Serial.println("");
   }
 }
-*/
-
-/* 
- *  
-
-  // A mettre dans le WebLink (maybe)
-  Serial.print("\n\n\n");
-  Serial.print("##############################\n");
-  Serial.print("Your DomoHouse is starting....\n");
-  Serial.print("DomoHouse started !\n");
-  Serial.print("##############################\n");
- */

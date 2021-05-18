@@ -8,12 +8,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 class Temperature : public Sensor, public Analog {
     public :
-        // Constructors
+        // Constructor
         Temperature();
         // Destructor
         ~Temperature();
 
-        // Other functions
+        // Public functions
         virtual void initialize(int pinNb) override;
         float getHeatLevel(int pinNb);
 

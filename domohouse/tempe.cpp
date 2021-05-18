@@ -1,18 +1,16 @@
 #include "tempe.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //            CLASSE TEMPERATURE
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Constructors
+// Constructor and destructor
 Temperature::Temperature() {}
 Temperature::~Temperature() {}
 
 void Temperature::initialize(int pinNb) {
   pinMode(pinNb, INPUT);
 }
-
 
 float Temperature::getHeatLevel(int pinNb) {
     value = analogRead(pinNb);
