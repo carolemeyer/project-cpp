@@ -16,7 +16,7 @@
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   
 #define AIO_USERNAME    "nidish75"
-#define AIO_KEY         "aio_LsTD02MSE1HTlCOy0Mc7jfmMBT0d"
+#define AIO_KEY         "aio_yUjS392mA1Cqt9GkwU8DiUTyCA3v"
 
 
 

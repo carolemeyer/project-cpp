@@ -6,7 +6,7 @@
   - classes.h   : definition of the basic classes for sensors and actuators, analog or digital
   - includes.h  : shall include all the libraries we need for this project and define pin numbers and other values
   - weblink     : wifi, web server
-  - kozy        : refrigerator, (LED) lights, (Buzzer) music, intrusion alarm
+  - kozy        : refrigerator, (LED) lights, (Speaker) music, intrusion alarm
   - zedoor      : servo, door opening sensor
   - IFTTTFeed   : all the code needed to log in, subscribe and track the feed of the neighbours
 
