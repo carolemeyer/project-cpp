@@ -21,10 +21,9 @@
 
 //// CLASS INSTANCIATIONS //// //Si on veut créer un object avec le constructeur sans argument, ne pas mettre de parentheses
 // Tempe.cpp
-//class Temperature caliente;
 class Temperature heatsup;
 // Kozy.cpp
-//class Light jacquouilleLaFripouille; // Jour, Nuit, Jour, Nuit
+//class Light jacquouilleLaFripouille; // Non implementee mais ce fut une possibilité
 class MyAlarm intruzion;
 class MyMood goodMood;
 class MyFridge monFrigo;
@@ -39,9 +38,7 @@ void setup() {
   welcome();
   // Tempe.cpp
   heatsup.initialize(PIN_TempSensor);
-  //caliente.initialize(PIN_TempSensor);  // Initializes the temperature sensor as input
   // Kozy.cpp
-  //jacquouilleLaFripouille.initialize(PIN_LightSensor); // Initializes the light sensor as input
   intruzion.initialize();
   goodMood.initialize();
   monFrigo.initialize();
@@ -57,11 +54,7 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {  
-  // Tempe.cpp
-  //caliente.getHeatLevel(PIN_TempSensor);
   // Kosy.cpp
-  //jacquouilleLaFripouille.getLightLevel(pinLightSensor);
-  //intruzion.alarmOn();
   if (heatsup.getHeatLevel(PIN_TempSensor) > 28.0) goodMood.posey();
   // Zedoor.cpp
   ProjetPorte1->runDoorProject(OpenDoorAngle, CloseDoorAngle, TimerOpenDoor1, TimerOpenDoor2);
@@ -71,7 +64,9 @@ void loop() {
 }
 
 void welcome(void) {
-  Serial.println("\n###############################################");
-  Serial.println("##         Welcome to the DomoHouse          ##");
-  Serial.println("###############################################");
+  Serial.println("\n\n\n");
+  Serial.println("#####################################################");
+  Serial.println("##            Welcome to the DomoHouse             ##");
+  Serial.println("## By Romain Choulot, Carole Meyer and Lea Pitault ##");
+  Serial.println("#####################################################");
 }
