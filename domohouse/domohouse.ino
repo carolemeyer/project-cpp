@@ -21,7 +21,6 @@
         - Trigger an intrusion alarm by touching the sensor for too long
     >>> DOMOTIK (WiFi) MODE : to use this mode, please define MODE as 1.
       In this mode you can take over the house with your phone, once they are connected to the same WiFi network.
-      Then, if an intrusion is detected in another team's house, it triggers ours too.
       To connect the house to your phone, please follow these instructions:
         - Activate the WiFi access point on your phone
         - Enter the network credentials in weblink.cpp as :
@@ -30,7 +29,10 @@
         - Open the serial monitor, it will give you an IP address
         - Enter this IP address on your favorite browser
         - Congratulations, you accessed the house's dedicated web page!
-      If an intrusion is detected at our neighbour's house, the information is transfered to the DomoHouse
+    >>> SMART VOISINS MODE : to use this mode, please define MODE as 2.
+      If an intrusion is detected at our neighbour's house, the information is transferred to the DomoHouse 
+      and triggers the alarm. To connect the house to the neighbour's server, please follow the instructions 
+      above to connect the house to a WiFi access point. 
 
   Specifications and where to find them (in French):
   - Création de plusieurs classes       : classes.h, module kozy, module tempe, module zedoor
@@ -56,7 +58,7 @@ enum Err_Vect {erreur_angle};
 auto OpenDoorAngle = 0; // valeur par défaut
 
 // HERE YOU DEFINE WHETHER YOU WANT TO USE THE HOUSE IN NORMAL OR DOMOTIK (WIFI) MODE
-#define MODE 0 // MODE 0 is Normal mode ; MODE 1 is Domotik (Wifi) mode ;
+#define MODE 2 // MODE 0 is Normal mode ; MODE 1 is Domotik (Wifi) mode ; MODE 2 is Smart Voisins mode
 
 #if (MODE==0) // NORMAL MODE
 
@@ -136,25 +138,43 @@ void loop() {
   ProjetPorte1->afficheInfos();
 }
 
-#else // DOMOTIK (WIFI) MODE
-
-//// INIT ////
-
-IFTTTFeed* Feed;
-// Kozy.cpp
-class MyAlarm intruzion;
+#elif (MODE==1) // DOMOTIK (WIFI) MODE
 
 void setup() {
   Serial.begin(115200);
   // Writes a nice welcoming message on your serial monitor
   welcome();
 
-  // Kozy.cpp
-  intruzion.initialize();
   // Here we initilize the web server we are using in the wifi mode
   // Weblink.cpp
   initializeWifi();
+}
 
+//// LOOP //// the loop function runs over and over again forever
+void loop() {
+  // Starts the Wifi module
+  // Weblink.cpp
+  startWifi();
+}
+
+#else // SMART VOISINS MODE
+
+//// INIT ////
+// Kozy.cpp
+class MyAlarm intruzion;
+
+IFTTTFeed* Feed;
+
+void setup() {
+  Serial.begin(115200);
+  // Writes a nice welcoming message on your serial monitor
+  welcome();
+  
+  // Here we initilize the web server we are using in the wifi mode
+  // Weblink.cpp
+  initializeWifi();
+  // Kozy.cpp
+  intruzion.initialize();
   // IFTTFeed.cpp
   Feed = new IFTTTFeed();
 }
@@ -164,14 +184,11 @@ void loop() {
   // Starts the Wifi module
   // Weblink.cpp
   startWifi();
-
   // Read feed
   string value = Feed->readFeed();
   if (value == "1") {
     intruzion.alarmOn(); 
   }
-  //Serial.println("Valeur : ");
-  //Serial.println(value.c_str());
 }
 
 #endif
