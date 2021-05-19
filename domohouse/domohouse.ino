@@ -11,7 +11,7 @@
   - IFTTTFeed   : all the code needed to log in, subscribe and track the feed of the neighbours
 
   Modes:
-  The DomoHouse has two functioning modes. The user can chose between one mode or the other by modifying the
+  The DomoHouse has two functioning modes. The user can choose between one mode or the other by modifying the
   line "#define MODE 0" just below.
     >>> NORMAL MODE : to use this mode, please define MODE as 0.
       In this mode you can:
@@ -30,6 +30,7 @@
         - Open the serial monitor, it will give you an IP address
         - Enter this IP address on your favorite browser
         - Congratulations, you accessed the house's dedicated web page!
+      If an intrusion is detected at our neighbour's house, the information is transfered to the DomoHouse
 
   Specifications and where to find them (in French):
   - Création de plusieurs classes       : classes.h, module kozy, module tempe, module zedoor
@@ -48,7 +49,7 @@
 #include "kozy.h"
 #include "weblink.h"
 #include "zedoor.h"
-//#include "IFTTTFeed.h"
+#include "IFTTTFeed.h"
 
 //EXCEPTIONS
 enum Err_Vect {erreur_angle};
@@ -139,19 +140,23 @@ void loop() {
 
 //// INIT ////
 
-//IFTTTFeed* Feed;
+IFTTTFeed* Feed;
+// Kozy.cpp
+class MyAlarm intruzion;
 
 void setup() {
   Serial.begin(115200);
   // Writes a nice welcoming message on your serial monitor
   welcome();
 
+  // Kozy.cpp
+  intruzion.initialize();
   // Here we initilize the web server we are using in the wifi mode
   // Weblink.cpp
   initializeWifi();
 
   // IFTTFeed.cpp
-  //Feed = new IFTTTFeed();
+  Feed = new IFTTTFeed();
 }
 
 //// LOOP //// the loop function runs over and over again forever
@@ -161,7 +166,12 @@ void loop() {
   startWifi();
 
   // Read feed
-  //string value = Feed->readFeed();
+  string value = Feed->readFeed();
+  if (value == "1") {
+    intruzion.alarmOn(); 
+  }
+  //Serial.println("Valeur : ");
+  //Serial.println(value.c_str());
 }
 
 #endif

@@ -1,5 +1,5 @@
 #include "IFTTTFeed.h"
-/*
+
 IFTTTFeed::IFTTTFeed(){
   clientWifi = new WiFiClient();
   mqtt = new Adafruit_MQTT_Client(clientWifi, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
@@ -50,4 +50,3 @@ void IFTTTFeed::notifyFeed(){
    connectToFeed();
    // Pour publier sur le feed : publisher->publish(1);  --- c'est l'autre équipe qui le fait
 }
-*/
